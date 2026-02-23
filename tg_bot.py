@@ -45,6 +45,9 @@ try:
         Application,
         CallbackQueryHandler,
         CommandHandler,
+        MessageHandler,
+        ConversationHandler,
+        filters,
         ContextTypes,
     )
     TELEGRAM_AVAILABLE = True
@@ -58,6 +61,9 @@ except ImportError:
     Application = None
     CallbackQueryHandler = None
     CommandHandler = None
+    MessageHandler = None
+    ConversationHandler = None
+    filters = None
     ContextTypes = None
 
 load_dotenv()
@@ -131,7 +137,10 @@ async def _unauthorized(update: Update) -> None:
 # Commands
 # ─────────────────────────────────────────────────────────────────────────────
 
-async def cmd_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+# States for editing workflows
+STATE_AWAIT_YAML, STATE_VALIDATE_WRITE = range(2)
+
+async def cmd_help(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> None:
     if not _is_allowed(update):
         return await _unauthorized(update)
 
@@ -156,7 +165,7 @@ async def cmd_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.effective_message.reply_text(text, parse_mode="Markdown")
 
 
-async def cmd_skills(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def cmd_skills(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> None:
     if not _is_allowed(update):
         return await _unauthorized(update)
 
@@ -199,7 +208,7 @@ async def cmd_skills(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
             await update.effective_message.reply_text(part, parse_mode="Markdown")
 
 
-async def cmd_recon(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def cmd_recon(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> None:
     if not _is_allowed(update):
         return await _unauthorized(update)
 
@@ -232,7 +241,7 @@ async def cmd_recon(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         await msg.edit_text(f"❌ Failed to enqueue: {exc}")
 
 
-async def cmd_orchestrate(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def cmd_orchestrate(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> None:
     if not _is_allowed(update):
         return await _unauthorized(update)
 
@@ -291,23 +300,64 @@ async def cmd_orchestrate(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     )
 
 
-async def cmd_edit(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def cmd_edit_start(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> int:
     if not _is_allowed(update):
-        return await _unauthorized(update)
+        await _unauthorized(update)
+        return ConversationHandler.END
 
     args = context.args
     if not args:
         await update.effective_message.reply_text("Usage: `/edit <workflow_name>`", parse_mode="Markdown")
-        return
+        return ConversationHandler.END
 
     workflow = args[0].strip()
+    skill_file = ROOT / "skills" / f"{workflow}.yaml"
+    
+    if not skill_file.exists():
+        await update.effective_message.reply_text(f"❌ Skill file `{workflow}.yaml` not found.")
+        return ConversationHandler.END
+        
+    try:
+        content = skill_file.read_text()
+    except Exception as e:
+        await update.effective_message.reply_text(f"❌ Error reading file: {e}")
+        return ConversationHandler.END
+
+    context.user_data['edit_file'] = str(skill_file)
+    context.user_data['edit_workflow'] = workflow
+
     await update.effective_message.reply_text(
-        f"📝 *YAML Editor (v2)*\nReading `{workflow}.yaml`...\n\n_Note: Inline editing coming in v2.1._",
+        f"📝 *YAML Editor*\nEditing `{workflow}.yaml`\n\nCurrent content:\n```yaml\n{content}\n```\n\nPaste updated YAML or /cancel",
         parse_mode="Markdown",
     )
+    return STATE_AWAIT_YAML
+
+async def cmd_edit_receive(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> int:
+    new_yaml = update.message.text
+    skill_file = Path(context.user_data.get('edit_file'))
+    
+    import yaml
+    try:
+        # Validate YAML
+        yaml.safe_load(new_yaml)
+    except yaml.YAMLError as e:
+        await update.effective_message.reply_text(f"❌ YAML syntax error:\n```\n{e}\n```\n\nPlease fix and resend, or /cancel", parse_mode="Markdown")
+        return STATE_AWAIT_YAML
+        
+    try:
+        skill_file.write_text(new_yaml)
+        await update.effective_message.reply_text("✅ Skill updated.")
+        return ConversationHandler.END
+    except Exception as e:
+        await update.effective_message.reply_text(f"❌ Error writing file: {e}")
+        return ConversationHandler.END
+
+async def cmd_edit_cancel(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> int:
+    await update.effective_message.reply_text("❌ Edit cancelled.")
+    return ConversationHandler.END
 
 
-async def cmd_status(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def cmd_status(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> None:
     if not _is_allowed(update):
         return await _unauthorized(update)
 
@@ -353,7 +403,7 @@ async def cmd_status(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
     except Exception as exc:
         await update.effective_message.reply_text(f"❌ Error fetching status: {exc}")
 
-async def cmd_email_sort(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def cmd_email_sort(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> None:
     if not _is_allowed(update):
         return await _unauthorized(update)
     if not context.args:
@@ -376,7 +426,7 @@ async def cmd_email_sort(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     except Exception as e:
         await msg.edit_text(f"❌ Email sort failed: {e}")
 
-async def cmd_new_inbox(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def cmd_new_inbox(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> None:
     if not _is_allowed(update):
         return await _unauthorized(update)
     if not context.args:
@@ -390,7 +440,7 @@ async def cmd_new_inbox(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     except Exception as e:
         await update.effective_message.reply_text(f"❌ Failed to create monitor: {e}")
 
-async def cmd_reply(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def cmd_reply(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> None:
     if not _is_allowed(update):
         return await _unauthorized(update)
     if len(context.args) < 2:
@@ -421,7 +471,7 @@ async def cmd_reply(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     else:
         await update.effective_message.reply_text("🚫 Draft aborted.")
 
-async def cmd_data(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def cmd_data(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> None:
     """Natural language data query command."""
     if not _is_allowed(update):
         return await _unauthorized(update)
@@ -447,7 +497,7 @@ async def cmd_data(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         await msg.edit_text(f"❌ Query error: {e}")
 
 
-async def cmd_stats(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def cmd_stats(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> None:
     """Zero-inference stats — reads SQLite token log directly."""
     if not _is_allowed(update):
         return await _unauthorized(update)
@@ -509,7 +559,7 @@ async def cmd_stats(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.effective_message.reply_text("\n".join(lines), parse_mode="Markdown")
 
 
-async def cmd_cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def cmd_cancel(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> None:
     if not _is_allowed(update):
         return await _unauthorized(update)
 
@@ -608,7 +658,7 @@ async def request_approval(
 
 
 
-async def _handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def _handle_callback(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> None:
     """Resolve pending approval futures when operator presses an inline button."""
     query = update.callback_query
     if not query:
@@ -825,7 +875,19 @@ def build_application() -> "Application":
     app.add_handler(CommandHandler("help", cmd_help))
     app.add_handler(CommandHandler("start", cmd_help))
     app.add_handler(CommandHandler("orchestrate", cmd_orchestrate))
-    app.add_handler(CommandHandler("edit", cmd_edit))
+    
+    # Inline YAML Editor
+    edit_conv_handler = ConversationHandler(
+        entry_points=[CommandHandler("edit", cmd_edit_start)],
+        states={
+            STATE_AWAIT_YAML: [
+                MessageHandler(filters.TEXT & (~filters.COMMAND), cmd_edit_receive)
+            ],
+        },
+        fallbacks=[CommandHandler("cancel", cmd_edit_cancel)],
+    )
+    app.add_handler(edit_conv_handler)
+    
     app.add_handler(CommandHandler("skills", cmd_skills))
     app.add_handler(CommandHandler("recon", cmd_recon))
     app.add_handler(CommandHandler("status", cmd_status))
