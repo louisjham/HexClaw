@@ -135,7 +135,10 @@ def _plan_with_llm(goal: str) -> dict[str, Any]:
     Uses a very low-token prompt to decide which skill to run.
     """
     try:
-        model = os.getenv("PLANNER_MODEL", "gemini/gemini-1.5-flash")
+        import json
+        import asyncio
+        import inference
+
         prompt = f"""
         You are the HexClaw Orchestrator. 
         Goal: "{goal}"
@@ -145,12 +148,23 @@ def _plan_with_llm(goal: str) -> dict[str, Any]:
         {{"skill": "skill_name", "params": {{"target": "extracted_target"}}}}
         """
         
-        # This is a placeholder for actual litellm call
-        # response = litellm.completion(model=model, messages=[{"role": "user", "content": prompt}])
-        # return json.loads(response.choices[0].message.content)
+        system_prompt = 'You must strictly output ONLY valid JSON: {"skill":"<name>","params":{"target":"<value>"}}'
         
-        # For now, fallback to rules until we verify LiteLLM environment
-        return _plan_with_rules(goal)
+        response_text = asyncio.run(inference.ask(prompt, complexity="low", system=system_prompt))
+        
+        try:
+            clean_text = response_text.replace("```json", "").replace("```", "").strip()
+            data = json.loads(clean_text)
+            
+            if "skill" in data and "params" in data:
+                return data
+            else:
+                log.error("LLM Planning missing keys.")
+                return _plan_with_rules(goal)
+        except json.JSONDecodeError as e:
+            log.error(f"LLM Planning invalid JSON: {e}")
+            return _plan_with_rules(goal)
+
     except Exception as e:
         log.error("LLM Planning failed: %s", e)
         return _plan_with_rules(goal)

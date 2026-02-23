@@ -72,6 +72,21 @@ async def query(prompt: str) -> pd.DataFrame:
     log.info(f"Executing SQL: {sql}")
     
     # 3. Execute
+    pg_conn = get_pg_conn()
+    if pg_conn:
+        try:
+            import warnings
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', UserWarning)
+                df = pd.read_sql_query(sql, pg_conn)
+            pg_conn.close()
+            return df
+        except Exception as e:
+            log.error(f"Postgres query failed: {e}")
+            if pg_conn:
+                pg_conn.close()
+            return pd.DataFrame()
+
     try:
         # JOBS_DB imported from config at module level
         _duck.execute("INSTALL sqlite; LOAD sqlite;")
@@ -91,6 +106,27 @@ def store_parquet(df: pd.DataFrame, name: str):
     path = DATA_DIR / f"{name}.parquet"
     df.to_parquet(path)
     log.info(f"Stored {len(df)} rows to {path}")
+    
+    pg_conn = get_pg_conn()
+    if pg_conn:
+        try:
+            cur = pg_conn.cursor()
+            cols = ",".join(df.columns)
+            vals = ",".join(["%s"] * len(df.columns))
+            insert_q = f"INSERT INTO {name} ({cols}) VALUES ({vals})"
+            
+            df_clean = df.where(pd.notnull(df), None)
+            records = [tuple(x) for x in df_clean.values.tolist()]
+            
+            cur.executemany(insert_q, records)
+            pg_conn.commit()
+            cur.close()
+            pg_conn.close()
+            log.info(f"Mirrored {len(df)} rows to Postgres table {name}")
+        except Exception as e:
+            log.error(f"Postgres mirror failed: {e}")
+            pg_conn.rollback()
+            pg_conn.close()
 
 # ── Workflows ─────────────────────────────────────────────────────────────────
 def suggest_next(workflow_id: str) -> List[str]:
@@ -98,21 +134,42 @@ def suggest_next(workflow_id: str) -> List[str]:
     Rule-based + SQL suggestion logic.
     Analyzes findings for a job and suggests logical next steps.
     """
-    # Placeholder: In a real run, this would query the 'findings' table for current workflow_id
-    # If open ports found -> "Vuln Scan"
-    # If HTTP found -> "Deep Probe"
-    # If CVE found -> "Exploit CVE"
+    suggestions = []
     
-    # Simulating data-driven logic
-    suggestions = ["Deep scan target", "Identify tech stack"]
-    
-    # Logic: if ports table exists and has entries for this workflow
     try:
-        res = _duck.query(f"SELECT COUNT(*) FROM read_parquet('{DATA_DIR}/*.parquet') WHERE severity = 'high'").fetchone()
-        if res and res[0] > 0:
-            suggestions.insert(0, "Exploit CVE")
-    except:
+        # Check for high CVSS scores
+        res_cve = _duck.query(
+            f"SELECT COUNT(*) FROM read_parquet('{DATA_DIR}/findings.parquet') "
+            f"WHERE workflow_id = '{workflow_id}' AND cvss_score >= 7.0"
+        ).fetchone()
+        if res_cve and res_cve[0] > 0:
+            suggestions.append("Exploit CVE")
+            
+        # Check for HTTP services on web ports
+        res_http = _duck.query(
+            f"SELECT COUNT(*) FROM read_parquet('{DATA_DIR}/findings.parquet') "
+            f"WHERE workflow_id = '{workflow_id}' "
+            f"AND port IN (80, 443, 8080, 8443) "
+            f"AND service ILIKE '%http%'"
+        ).fetchone()
+        if res_http and res_http[0] > 0:
+            suggestions.append("Gobuster Scan")
+            
+        # Check for SSH service
+        res_ssh = _duck.query(
+            f"SELECT COUNT(*) FROM read_parquet('{DATA_DIR}/findings.parquet') "
+            f"WHERE workflow_id = '{workflow_id}' "
+            f"AND service ILIKE '%ssh%'"
+        ).fetchone()
+        if res_ssh and res_ssh[0] > 0:
+            suggestions.append("Bruteforce SSH")
+            
+    except Exception as e:
+        log.warning(f"Error checking findings for suggestions: {e}")
         pass
+        
+    if not suggestions:
+        suggestions = ["Recon target", "Identify tech stack"]
         
     return suggestions[:4]
 

@@ -1,4 +1,4 @@
----
+--
 description: Codebase improvement analysis — modeled after us_masscan_vuln enhancements
 created: 2026-02-20T00:53:00-06:00
 ---

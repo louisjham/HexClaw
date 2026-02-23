@@ -110,8 +110,18 @@ class InferenceEngine:
             return hit
 
         if not LITELLM_AVAILABLE:
-            log.warning("LiteLLM not available. Returning stub response.")
-            return f"[LiteLLM Stub] {prompt[:50]}..."
+            log.warning("LiteLLM not available. Falling back to local Ollama API.")
+            try:
+                import requests
+                response = requests.post(
+                    "http://localhost:11434/api/generate",
+                    json={"model": "llama3", "prompt": prompt, "stream": False},
+                    timeout=60
+                )
+                return response.json()["response"]
+            except Exception as e:
+                log.error(f"Ollama fallback failed: {e}")
+                return ""
 
         model = self.select_model(complexity)
         log.info(f"LLM call: model={model} tier={complexity} prompt_len={len(prompt)}")
