@@ -369,7 +369,7 @@ async def cmd_status(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> 
         import data
         
         # 1. Get raw jobs from callback
-        jobs = _status_callback()
+        jobs = await _status_callback()
         
         # 2. Get rich summary from data.py (DuckDB)
         rich_summary = await data.get_summary_df()

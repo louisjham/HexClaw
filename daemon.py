@@ -87,7 +87,7 @@ class JobStatus:
     FAILED = "failed"
     CANCELLED = "cancelled"
 
-async def enqueue_job(skill: str, params: dict) -> str:
+def _enqueue_job_sync(skill: str, params: dict) -> str:
     job_id = str(uuid.uuid4())[:8]
     target = params.get("target", "unknown")
     conn = sqlite3.connect(JOBS_DB)
@@ -97,24 +97,38 @@ async def enqueue_job(skill: str, params: dict) -> str:
     )
     conn.commit()
     conn.close()
+    return job_id
+
+async def enqueue_job(skill: str, params: dict) -> str:
+    loop = asyncio.get_running_loop()
+    job_id = await loop.run_in_executor(None, _enqueue_job_sync, skill, params)
+    target = params.get("target", "unknown")
     log.info(f"Enqueued job {job_id}: {skill} on {target}")
     return job_id
 
-def get_pending_jobs():
+def _get_pending_jobs_sync():
     conn = sqlite3.connect(JOBS_DB)
     conn.row_factory = sqlite3.Row
     jobs = conn.execute("SELECT * FROM jobs WHERE status = ?", (JobStatus.PENDING,)).fetchall()
     conn.close()
     return jobs
 
-def get_recent_jobs(limit=10):
+async def get_pending_jobs():
+    loop = asyncio.get_running_loop()
+    return await loop.run_in_executor(None, _get_pending_jobs_sync)
+
+def _get_recent_jobs_sync(limit=10):
     conn = sqlite3.connect(JOBS_DB)
     conn.row_factory = sqlite3.Row
     jobs = conn.execute("SELECT * FROM jobs ORDER BY created_at DESC LIMIT ?", (limit,)).fetchall()
     conn.close()
     return [dict(j) for j in jobs]
 
-def update_job_status(job_id: str, status: str, result: Any = None, error: str = None):
+async def get_recent_jobs(limit=10):
+    loop = asyncio.get_running_loop()
+    return await loop.run_in_executor(None, _get_recent_jobs_sync, limit)
+
+def _update_job_status_sync(job_id: str, status: str, result: Any = None, error: str = None):
     conn = sqlite3.connect(JOBS_DB)
     now = datetime.now(timezone.utc).isoformat()
     if status == JobStatus.RUNNING:
@@ -127,11 +141,15 @@ def update_job_status(job_id: str, status: str, result: Any = None, error: str =
     conn.commit()
     conn.close()
 
+async def update_job_status(job_id: str, status: str, result: Any = None, error: str = None):
+    loop = asyncio.get_running_loop()
+    await loop.run_in_executor(None, _update_job_status_sync, job_id, status, result, error)
+
 # ── Skills & MCP ──────────────────────────────────────────────────────────────
 async def run_skill(job_id: str, skill_name: str, params: dict, notifier: Notifier | NullNotifier):
     target = params.get("target", "unknown")
     log.info(f"[Job {job_id}] Skill dispatch: {skill_name} → {target}")
-    update_job_status(job_id, JobStatus.RUNNING)
+    await update_job_status(job_id, JobStatus.RUNNING)
     
     if skill_name == "awesome_skill_execution":
         steps = [{
@@ -148,7 +166,7 @@ async def run_skill(job_id: str, skill_name: str, params: dict, notifier: Notifi
         if not skill_file.exists():
             err = f"Skill {skill_name} not found at {skill_file}"
             log.error(f"[Job {job_id}] {err}")
-            update_job_status(job_id, JobStatus.FAILED, error=err)
+            await update_job_status(job_id, JobStatus.FAILED, error=err)
             return
             
         try:
@@ -158,7 +176,7 @@ async def run_skill(job_id: str, skill_name: str, params: dict, notifier: Notifi
         except Exception as e:
             err = f"Failed to parse skill {skill_name}: {e}"
             log.error(f"[Job {job_id}] {err}")
-            update_job_status(job_id, JobStatus.FAILED, error=err)
+            await update_job_status(job_id, JobStatus.FAILED, error=err)
             return
     
     log.info(f"[Job {job_id}] Loaded skill '{skill_name}' with {len(steps)} steps")
@@ -246,7 +264,7 @@ async def run_skill(job_id: str, skill_name: str, params: dict, notifier: Notifi
         await notifier.send(f"🔄 Job {job_id} step {i}: {tool}...")
         await asyncio.sleep(1) # Simulating work
 
-    update_job_status(job_id, JobStatus.DONE, result={"status": "completed"})
+    await update_job_status(job_id, JobStatus.DONE, result={"status": "completed"})
     log.info(f"[Job {job_id}] ✅ Skill '{skill_name}' completed successfully")
     await notifier.send(f"✅ Job {job_id} complete!")
 
@@ -308,7 +326,7 @@ class HexClawDaemon:
         await self.start()
         log.info("Daemon heartbeat active.")
         while not self._stop_event.is_set():
-            pending = get_pending_jobs()
+            pending = await get_pending_jobs()
             for row in pending:
                 job_id = row['id']
                 skill = row['skill']
