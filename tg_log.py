@@ -113,15 +113,18 @@ class TelegramLogHandler(logging.Handler):
             return
 
         try:
-            emoji = _THOUGHT_MODULES.get(record.name, _EMOJI.get(record.levelno, "📝"))
+            import html as _html
+            emoji = _THOUGHT_MODULES.get(record.name, _EMOJI.get(record.levelno, "\U0001f4dd"))
             ts = datetime.fromtimestamp(record.created, tz=timezone.utc).strftime("%H:%M:%S")
             module_short = record.name.replace("hexclaw.", "")
+            safe_msg = _html.escape(record.getMessage())
 
-            msg = f"{emoji} `{ts}` *{module_short}* · {record.getMessage()}"
+            msg = f"{emoji} <code>{ts}</code> <b>{module_short}</b> · {safe_msg}"
 
             # Append exception info if present
             if record.exc_info and record.exc_info[1]:
-                msg += f"\n```\n{record.exc_info[1]}\n```"
+                safe_exc = _html.escape(str(record.exc_info[1]))
+                msg += f"\n<pre>{safe_exc}</pre>"
 
             self._queue.put_nowait(msg)
         except queue.Full:
@@ -207,7 +210,10 @@ class TelegramLogHandler(logging.Handler):
         if not self._bot:
             try:
                 from telegram import Bot
-                self._bot = Bot(token=self._token)
+                from telegram.request import HTTPXRequest
+                # Dedicated pool so this thread never competes with the Application pool
+                _req = HTTPXRequest(connection_pool_size=4, pool_timeout=20.0)
+                self._bot = Bot(token=self._token, request=_req)
             except ImportError:
                 return
 
@@ -215,10 +221,10 @@ class TelegramLogHandler(logging.Handler):
             await self._bot.send_message(
                 chat_id=self._chat_id,
                 text=text[:4096],
-                parse_mode="Markdown",
+                parse_mode="HTML",
             )
         except Exception:
-            # Fallback: try without Markdown if formatting breaks
+            # Fallback: try without HTML if formatting breaks
             try:
                 await self._bot.send_message(
                     chat_id=self._chat_id,
@@ -257,7 +263,10 @@ def install(level: str | None = None) -> TelegramLogHandler | None:
     root = logging.getLogger()
     root.addHandler(_handler)
 
-    log.info("📡 Telegram log handler installed (level=%s, batch=%ss)", 
+    # Use ASCII-safe message here — this log.info() goes to the console/stream
+    # handler *before* anything ensures UTF-8 encoding, causing UnicodeEncodeError
+    # on Windows CP1252 terminals when emoji characters are present.
+    log.info("[tg_log] Telegram log handler installed (level=%s, batch=%ss)",
              logging.getLevelName(effective_level), BATCH_INTERVAL)
 
     return _handler

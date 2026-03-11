@@ -84,6 +84,14 @@ def _plan_with_rules(goal: str) -> dict[str, Any]:
             "skill": "recon_osint",
             "params": {"target": target, "description": "Auto-planned recon based on goal"}
         }
+        
+    # Autonomous Pentest (Villager)
+    if any(kw in goal_lower for kw in ["pentest", "exploit", "mission", "hack", "attack"]):
+        log.info("Rule match → skill: villager_mission")
+        return {
+            "skill": "villager_mission",
+            "params": {"target": target, "goal": goal}
+        }
     
     # Dev / Git
     if any(kw in goal_lower for kw in ["git", "clone", "deploy", "lint", "test"]):

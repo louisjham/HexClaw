@@ -1,0 +1,7 @@
+name: Villager Autonomous Pentest Mission
+description: Delegates a complex, long-horizon security objective to the Villager orchestration agent.
+steps:
+  - tool: villager
+    action: dispatch_mission
+    input: goal
+    output: task_id

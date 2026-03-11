@@ -16,6 +16,9 @@ import json
 import logging
 import os
 import sqlite3
+import subprocess
+import sys
+import time
 import uuid
 import pandas as pd
 from datetime import datetime, timezone
@@ -25,26 +28,8 @@ from typing import Any
 import yaml
 from dotenv import load_dotenv
 
-import tg_bot as tg_module
-from tg_bot import Notifier, register_enqueue, register_status, register_orchestrate
-import planner
-import cache
-import inference
-import monitor
-import data
-import vuln_prioritize
-
 load_dotenv()
 
-# ── Null Notifier (for testing) ────────────────────────────────────────────────
-class NullNotifier:
-    async def send(self, text: str, parse_mode: str = "Markdown"): pass
-    async def send_file(self, file_path: str, caption: str | None = None): pass
-    async def send_report(self, *args, **kwargs): pass
-    async def request_approval(self, *args, **kwargs):
-        return {"action": "approve", "choice": None}
-
-# ── Config ────────────────────────────────────────────────────────────────────
 from config import ROOT, DATA_DIR, JOBS_DB, SKILLS_DIR, LOG_DIR
 
 logging.basicConfig(
@@ -56,6 +41,23 @@ logging.basicConfig(
     ]
 )
 log = logging.getLogger("hexclaw.daemon")
+
+import tg_bot as tg_module
+from tg_bot import Notifier, register_enqueue, register_status, register_orchestrate
+import planner
+import cache
+import inference
+import monitor
+import data
+import vuln_prioritize
+
+# ── Null Notifier (for testing) ────────────────────────────────────────────────
+class NullNotifier:
+    async def send(self, text: str, parse_mode: str = "Markdown"): pass
+    async def send_file(self, file_path: str, caption: str | None = None): pass
+    async def send_report(self, *args, **kwargs): pass
+    async def request_approval(self, *args, **kwargs):
+        return {"action": "approve", "choice": None}
 
 # ── Database ──────────────────────────────────────────────────────────────────
 def init_db():
@@ -77,6 +79,86 @@ def init_db():
     conn.commit()
     conn.close()
 
+
+# ── Postgres Health-check + Auto-start ───────────────────────────────────────
+def ensure_postgres() -> None:
+    """
+    Verify Postgres is reachable.  If not, attempt to start it.
+    Exits the process with a clear error if it cannot be reached after all attempts.
+    """
+    dsn = os.getenv("POSTGRES_DSN")
+    if not dsn:
+        log.info("POSTGRES_DSN not set — skipping Postgres check.")
+        return
+
+    def _can_connect() -> bool:
+        try:
+            import psycopg2
+            conn = psycopg2.connect(dsn, connect_timeout=3)
+            conn.close()
+            return True
+        except Exception:
+            return False
+
+    # 1. Already up?
+    if _can_connect():
+        log.info("Postgres: already running.")
+        return
+
+    log.warning("Postgres not reachable — attempting to start it...")
+
+    # 2. Try Windows service (works when installed via EnterpriseDB / MSI)
+    started_via = None
+    for svc_name in ("postgresql", "postgresql-x64-16", "postgresql-x64-15",
+                     "postgresql-x64-14", "postgresql-x64-17"):
+        try:
+            result = subprocess.run(
+                ["net", "start", svc_name],
+                capture_output=True, text=True, timeout=15
+            )
+            if result.returncode == 0 or "already been started" in result.stdout.lower():
+                started_via = f"Windows service '{svc_name}'"
+                break
+        except (FileNotFoundError, subprocess.TimeoutExpired):
+            continue
+
+    # 3. Fallback: pg_ctl start (works for manual installs)
+    if not started_via:
+        pg_ctl = os.getenv("PG_CTL", "pg_ctl")
+        pg_data = os.getenv("PGDATA", "")
+        if pg_data:
+            try:
+                result = subprocess.run(
+                    [pg_ctl, "start", "-D", pg_data, "-w"],
+                    capture_output=True, text=True, timeout=20
+                )
+                if result.returncode == 0:
+                    started_via = f"pg_ctl (PGDATA={pg_data})"
+            except (FileNotFoundError, subprocess.TimeoutExpired):
+                pass
+
+    # 4. Poll for up to 10 s
+    if started_via:
+        log.info("Started via %s — waiting for Postgres to accept connections...", started_via)
+        for _ in range(10):
+            time.sleep(1)
+            if _can_connect():
+                log.info("Postgres is now accepting connections.")
+                return
+
+    # 5. Give up — print actionable error and exit
+    print(
+        "\n"
+        "FATAL: Cannot connect to Postgres and auto-start failed.\n"
+        f"  DSN : {dsn}\n"
+        "\n"
+        "To fix this, try one of:\n"
+        "  1. Start Postgres manually:  net start postgresql\n"
+        "  2. Or set PGDATA in .env and ensure pg_ctl is on PATH.\n"
+        "  3. Or update POSTGRES_DSN in .env to point to a running server.\n",
+        file=sys.stderr
+    )
+    sys.exit(1)
 
 
 # ── Job Lifecycle ─────────────────────────────────────────────────────────────
@@ -114,7 +196,7 @@ def get_recent_jobs(limit=10):
     conn.close()
     return [dict(j) for j in jobs]
 
-def update_job_status(job_id: str, status: str, result: Any = None, error: str = None):
+def update_job_status(job_id: str, status: str, result: Any = None, error: str | None = None):
     conn = sqlite3.connect(JOBS_DB)
     now = datetime.now(timezone.utc).isoformat()
     if status == JobStatus.RUNNING:
@@ -241,7 +323,26 @@ async def run_skill(job_id: str, skill_name: str, params: dict, notifier: Notifi
                 log.warning(f"[Job {job_id}] Approval timed out — skipping suggest_next")
             continue
 
-        # 2. Tool Endpoint Map / MCP Call (Placeholder)
+        # 2. Tool Endpoint Map / MCP Call
+        if action == "dispatch_mission" and tool == "villager":
+            goal = context.get(step.get("input", "goal"), "No goal provided")
+            target = context.get("target", "unknown")
+            log.info(f"[Job {job_id}] Dispatching autonomous mission to Villager: {goal} on {target}")
+            await notifier.send(f"🏘️ *Villager Integration* \nDispatching autonomous mission: {goal}\nTarget: {target}")
+            
+            import villager_client
+            # We don't have constraints explicitly mapped yet, could get from planner or params
+            v_task_id = await villager_client.dispatch_mission(goal, target)
+            
+            if v_task_id:
+                context[step.get("output", "task_id")] = v_task_id
+                await notifier.send(f"✅ Mission delegated to Villager. Task ID: `{v_task_id}`\n(Fire and forget initiated)")
+                log.info(f"Villager mission started with tracking ID: {v_task_id}")
+            else:
+                await notifier.send("❌ Failed to delegate mission to Villager MCP.")
+                log.error("Villager client failed to return a task_id")
+            continue
+
         log.info(f"[Job {job_id}] Dispatching tool: {tool}")
         await notifier.send(f"🔄 Job {job_id} step {i}: {tool}...")
         await asyncio.sleep(1) # Simulating work
@@ -266,6 +367,7 @@ class HexClawDaemon:
         return await enqueue_job(skill, params)
 
     async def start(self):
+        ensure_postgres()
         init_db()
         header_text = "HexClaw Daemon v1.0 Starting"
         log.info(header_text)

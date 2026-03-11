@@ -796,3 +796,208 @@ task: <Task pending name='Task-2' coro=<run_bot_async() running at /mnt/c/antigr
 2026-02-21 05:59:49,586 [telegram.ext.Application] INFO: Application started
 2026-02-21 05:59:49,726 [hexclaw.tg_bot] INFO: Telegram bot is running. Waiting for messages...
 2026-02-21 06:14:50,548 [hexclaw.monitor] INFO: Monitor pass complete: 195 total, 0 sent, 188 dedup-skipped, 202 below-threshold
+2026-02-23 13:39:33,290 [hexclaw.daemon] INFO: HexClaw Daemon v1.0 Starting
+2026-02-23 13:39:33,292 [hexclaw.daemon] INFO: Redis Cache Ready: {'hits_exact': 0, 'hits_semantic': 0, 'misses': 0, 'total': 0, 'hit_rate': 0.0, 'embed_backend': 'ngram_numpy', 'redis_exact': False, 'redis_semantic': False}
+2026-02-23 13:39:33,302 [hexclaw.tg_log] INFO: 📡 Telegram log handler installed (level=INFO, batch=3.0s)
+2026-02-23 13:39:35,013 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/sendMessage "HTTP/1.1 200 OK"
+2026-02-23 13:39:35,016 [hexclaw.daemon] INFO: Threat Monitor active.
+2026-02-23 13:39:35,017 [hexclaw.daemon] INFO: Daemon heartbeat active.
+2026-02-23 13:39:35,051 [hexclaw.tg_bot] INFO: Starting Telegram bot (long-polling)...
+2026-02-23 13:39:35,052 [hexclaw.monitor] INFO: Monitor starting (interval=900s, min_severity=medium)
+2026-02-23 13:39:35,053 [hexclaw.monitor] WARNING: feedparser not installed — `pip install feedparser`
+2026-02-23 13:39:35,054 [hexclaw.monitor] WARNING: feedparser not installed — `pip install feedparser`
+2026-02-23 13:39:35,055 [hexclaw.monitor] WARNING: feedparser not installed — `pip install feedparser`
+2026-02-23 13:39:35,057 [hexclaw.monitor] WARNING: feedparser not installed — `pip install feedparser`
+2026-02-23 13:39:35,058 [hexclaw.monitor] WARNING: feedparser not installed — `pip install feedparser`
+2026-02-23 13:39:35,059 [hexclaw.monitor] INFO: Monitor pass complete: 0 total, 0 sent, 0 dedup-skipped, 0 below-threshold
+2026-02-23 13:39:35,672 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getMe "HTTP/1.1 200 OK"
+2026-02-23 13:39:35,674 [telegram.ext.Application] INFO: Application started
+2026-02-23 13:39:35,818 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/deleteWebhook "HTTP/1.1 200 OK"
+2026-02-23 13:39:35,820 [hexclaw.tg_bot] INFO: Telegram bot is running. Waiting for messages...
+2026-02-23 13:39:36,919 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/sendMessage "HTTP/1.1 400 Bad Request"
+2026-02-23 13:39:37,193 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/sendMessage "HTTP/1.1 200 OK"
+2026-02-23 13:39:46,531 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-23 13:39:56,678 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-23 13:40:06,822 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-23 13:40:08,529 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-23 13:40:09,307 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/sendMessage "HTTP/1.1 200 OK"
+2026-02-23 13:40:18,676 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-23 13:40:28,829 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-23 13:40:38,975 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-23 13:40:39,539 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-23 13:40:39,547 [asyncio] ERROR: Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<run_bot_async() running at /mnt/c/antigravity/hexstrike-ai/tg_bot.py:966> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-02-23 13:40:40,307 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/sendMessage "HTTP/1.1 200 OK"
+2026-02-23 13:44:00,970 [hexclaw.daemon] INFO: HexClaw Daemon v1.0 Starting
+2026-02-23 13:44:02,466 [hexclaw.daemon] INFO: Redis Cache Ready: {'hits_exact': 0, 'hits_semantic': 0, 'misses': 0, 'total': 0, 'hit_rate': 0.0, 'embed_backend': 'ngram_numpy', 'redis_exact': True, 'redis_semantic': True}
+2026-02-23 13:44:02,480 [hexclaw.tg_log] INFO: 📡 Telegram log handler installed (level=INFO, batch=3.0s)
+2026-02-23 13:44:03,350 [hexclaw.daemon] INFO: Threat Monitor active.
+2026-02-23 13:44:03,351 [hexclaw.daemon] INFO: Daemon heartbeat active.
+2026-02-23 13:44:03,441 [hexclaw.tg_bot] INFO: Starting Telegram bot (long-polling)...
+2026-02-23 13:44:03,442 [hexclaw.monitor] INFO: Monitor starting (interval=900s, min_severity=medium)
+2026-02-23 13:44:05,614 [hexclaw.monitor] INFO: Monitor pass complete: 195 total, 0 sent, 90 dedup-skipped, 105 below-threshold
+2026-02-23 13:44:05,947 [telegram.ext.Application] INFO: Application started
+2026-02-23 13:44:06,102 [hexclaw.tg_bot] INFO: Telegram bot is running. Waiting for messages...
+2026-02-23 13:44:43,243 [telegram.ext.Application] ERROR: No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1315, in process_update
+    await coroutine
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_handlers/basehandler.py", line 159, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/antigravity/hexstrike-ai/tg_bot.py", line 174, in cmd_skills
+    skills_cat = awesome_skills.get_skills_by_category()
+                 ^^^^^^^^^^^^^^
+NameError: name 'awesome_skills' is not defined
+2026-02-23 13:45:32,032 [hexclaw.daemon] INFO: Enqueued job 850fb9d5: recon_osint on shopgoodwill.com
+2026-02-23 13:45:33,737 [hexclaw.daemon] INFO: [Job 850fb9d5] Skill dispatch: recon_osint → shopgoodwill.com
+2026-02-23 13:45:33,814 [hexclaw.daemon] INFO: [Job 850fb9d5] Loaded skill 'recon_osint' with 8 steps
+2026-02-23 13:45:33,815 [hexclaw.daemon] INFO: [Job 850fb9d5] Step 1/8: tool=amass action=None
+2026-02-23 13:45:33,816 [hexclaw.daemon] INFO: [Job 850fb9d5] Dispatching tool: amass
+2026-02-23 13:45:35,384 [hexclaw.daemon] INFO: [Job 850fb9d5] Step 2/8: tool=subfinder action=None
+2026-02-23 13:45:35,385 [hexclaw.daemon] INFO: [Job 850fb9d5] Dispatching tool: subfinder
+2026-02-23 13:45:36,664 [hexclaw.daemon] INFO: [Job 850fb9d5] Step 3/8: tool=httpx action=None
+2026-02-23 13:45:36,665 [hexclaw.daemon] INFO: [Job 850fb9d5] Dispatching tool: httpx
+2026-02-23 13:45:37,943 [hexclaw.daemon] INFO: [Job 850fb9d5] Step 4/8: tool=rustscan action=None
+2026-02-23 13:45:37,944 [hexclaw.daemon] INFO: [Job 850fb9d5] Dispatching tool: rustscan
+2026-02-23 13:45:39,213 [hexclaw.daemon] INFO: [Job 850fb9d5] Step 5/8: tool=nmap action=None
+2026-02-23 13:45:39,214 [hexclaw.daemon] INFO: [Job 850fb9d5] Dispatching tool: nmap
+2026-02-23 13:45:40,490 [hexclaw.daemon] INFO: [Job 850fb9d5] Step 6/8: tool=nuclei action=None
+2026-02-23 13:45:40,491 [hexclaw.daemon] INFO: [Job 850fb9d5] Dispatching tool: nuclei
+2026-02-23 13:45:41,776 [hexclaw.daemon] INFO: [Job 850fb9d5] Step 7/8: tool=data_store action=store_findings
+2026-02-23 13:45:41,777 [hexclaw.daemon] INFO: [Job 850fb9d5] Storing findings to analytical layer
+2026-02-23 13:45:43,360 [hexclaw.data] INFO: Stored 2 rows to /mnt/c/antigravity/hexstrike-ai/data/job_850fb9d5.parquet
+2026-02-23 13:45:43,875 [hexclaw.data] WARNING: Postgres connection failed: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "hexclaw"
+connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "hexclaw"
+
+2026-02-23 13:45:43,875 [hexclaw.daemon] INFO: [Job 850fb9d5] Stored 2 findings to parquet
+2026-02-23 13:45:44,155 [hexclaw.daemon] INFO: [Job 850fb9d5] Step 8/8: tool=suggest_next action=suggest_next
+2026-02-23 13:45:44,156 [hexclaw.daemon] INFO: [Job 850fb9d5] Generating next-step suggestions for recon_osint
+2026-02-23 13:45:44,206 [hexclaw.data] WARNING: Error checking findings for suggestions: IO Error: No files found that match the pattern "/mnt/c/antigravity/hexstrike-ai/data/findings.parquet"
+2026-02-23 13:45:44,277 [hexclaw.daemon] INFO: [Job 850fb9d5] Suggestions: ['Recon target', 'Identify tech stack'] | Top CVEs: 🔥 *Top Critical/High Vulnerabilities*
+• *[HIGH]* `cve-2023-1234` on `shopgoodwil
+2026-02-23 13:45:44,278 [hexclaw.daemon] INFO: [Job 850fb9d5] Awaiting operator approval (timeout=300s)
+2026-02-23 13:47:41,536 [hexclaw.planner] INFO: Planning goal: 'create POC for cve-2023-1234.'
+2026-02-23 13:47:41,538 [hexclaw.planner] INFO: Using LLM planner (litellm + Gemini available)
+2026-02-23 13:47:41,538 [hexclaw.planner] ERROR: LLM Planning failed: asyncio.run() cannot be called from a running event loop
+2026-02-23 13:47:41,539 [hexclaw.planner] INFO: Extracted target: unknown
+2026-02-23 13:47:41,540 [hexclaw.planner] INFO: No rule matched → default skill: agent_plan
+2026-02-23 13:47:41,541 [hexclaw.planner] INFO: No built-in rule matched. Searching Awesome Skills for: create POC for cve-2023-1234.
+2026-02-23 13:47:41,557 [hexclaw.awesome_skills] INFO: Loading awesome skills index from /mnt/c/antigravity/hexstrike-ai/.agent/skills/skills_index.json
+2026-02-23 13:47:41,925 [hexclaw.awesome_skills] INFO: Loaded 883 awesome skills.
+2026-02-23 13:47:41,927 [hexclaw.awesome_skills] INFO: Found awesome skill match: create-pr (Score 4)
+2026-02-23 13:47:41,962 [hexclaw.planner] INFO: Awesome Skill match found: create-pr
+2026-02-23 13:47:41,978 [hexclaw.data] WARNING: Error checking findings for suggestions: IO Error: No files found that match the pattern "/mnt/c/antigravity/hexstrike-ai/data/findings.parquet"
+2026-02-23 13:47:42,693 [telegram.ext.Application] ERROR: No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1315, in process_update
+    await coroutine
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_handlers/basehandler.py", line 159, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/antigravity/hexstrike-ai/tg_bot.py", line 330, in cmd_orchestrate
+    await update.effective_message.reply_text(
+    ...<3 lines>...
+    )
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_message.py", line 2068, in reply_text
+    return await self.get_bot().send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<21 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 3115, in send_message
+    return await super().send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<23 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_bot.py", line 1122, in send_message
+    return await self._send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<21 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 629, in _send_message
+    result = await super()._send_message(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<23 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_bot.py", line 819, in _send_message
+    result = await self._post(
+             ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.BadRequest: Can't parse entities: can't find end of the entity starting at byte offset 5778
+2026-02-23 13:48:38,711 [telegram.ext.Application] INFO: Application is stopping. This might take a moment.
+2026-02-23 13:48:38,711 [telegram.ext.Application] CRITICAL: Fetching updates was aborted due to CancelledError(). Suppressing exception to ensure graceful shutdown.
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/mnt/c/antigravity/hexstrike-ai/./daemon.py", line 322, in main
+    await daemon.run_forever()
+  File "/mnt/c/antigravity/hexstrike-ai/./daemon.py", line 318, in run_forever
+    await asyncio.sleep(5) # Heartbeat interval
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/tasks.py", line 718, in sleep
+    return await future
+           ^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 673, in stop
+    self.__update_fetcher_task.result()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1233, in _update_fetcher
+    await self.__update_fetcher()
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1212, in __update_fetcher
+    update = await self.update_queue.get()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/queues.py", line 186, in get
+    await getter
+asyncio.exceptions.CancelledError
+2026-02-23 13:48:38,753 [telegram.ext.Application] INFO: Application.stop() complete
+2026-02-23 13:48:38,754 [hexclaw.tg_bot] INFO: Telegram bot stopped.

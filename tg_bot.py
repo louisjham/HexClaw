@@ -159,6 +159,7 @@ async def cmd_help(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> No
         "`/orchestrate <goal>` — Plan and run goal\n"
         "`/skills [category]` — List available Agentic Skills\n"
         "`/recon <target>` — Full recon chain\n"
+        "`/cidr_masscan <target>` — US IPv4 CIDR masscan and vulnerability check\n"
         "`/cancel <job_id>` — Cancel a job\n"
         "`/help` — Show help"
     )
@@ -231,6 +232,39 @@ async def cmd_recon(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> N
 
     try:
         job_id = await _enqueue_callback("recon_osint", {"target": target})
+        await msg.edit_text(
+            f"✅ Job `{job_id}` queued for *{target}*\n"
+            f"Use /status to track progress.",
+            parse_mode="Markdown",
+        )
+    except Exception as exc:
+        log.exception("Enqueue failed")
+        await msg.edit_text(f"❌ Failed to enqueue: {exc}")
+
+
+async def cmd_cidr_masscan(update: "Update", context: "ContextTypes.DEFAULT_TYPE") -> None:
+    if not _is_allowed(update):
+        return await _unauthorized(update)
+
+    args = context.args
+    if not args:
+        await update.effective_message.reply_text(
+            "Usage: `/cidr_masscan <target>`\nExample: `/cidr_masscan example.com`",
+            parse_mode="Markdown",
+        )
+        return
+
+    target = args[0].strip()
+    msg = await update.effective_message.reply_text(
+        f"🔍 Queuing US Masscan Vuln pipeline for `{target}`...", parse_mode="Markdown"
+    )
+
+    if _enqueue_callback is None:
+        await msg.edit_text("❌ Daemon not connected. Is daemon.py running?")
+        return
+
+    try:
+        job_id = await _enqueue_callback("us_masscan_vuln", {"target": target})
         await msg.edit_text(
             f"✅ Job `{job_id}` queued for *{target}*\n"
             f"Use /status to track progress.",
@@ -870,7 +904,16 @@ def build_application() -> "Application":
     if not BOT_TOKEN:
         raise ValueError("TELEGRAM_BOT_TOKEN not set in .env")
 
-    app = Application.builder().token(BOT_TOKEN).build()
+    from telegram.request import HTTPXRequest
+    # Use a larger connection pool — the default (1 slot) exhausts quickly
+    # when the tg_log background thread and the main updater compete.
+    request = HTTPXRequest(connection_pool_size=8, pool_timeout=30.0)
+    app = (
+        Application.builder()
+        .token(BOT_TOKEN)
+        .request(request)
+        .build()
+    )
 
     app.add_handler(CommandHandler("help", cmd_help))
     app.add_handler(CommandHandler("start", cmd_help))
@@ -890,6 +933,7 @@ def build_application() -> "Application":
     
     app.add_handler(CommandHandler("skills", cmd_skills))
     app.add_handler(CommandHandler("recon", cmd_recon))
+    app.add_handler(CommandHandler("cidr_masscan", cmd_cidr_masscan))
     app.add_handler(CommandHandler("status", cmd_status))
     app.add_handler(CommandHandler("stats", cmd_stats))
     app.add_handler(CommandHandler("data", cmd_data))

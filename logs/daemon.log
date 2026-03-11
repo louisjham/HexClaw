@@ -22,3 +22,781 @@
 2026-02-20 02:44:33,768 [hexclaw.test] INFO: Job 8f3d49e6 status: done
 2026-02-20 02:44:33,769 [hexclaw.test] INFO: Test finished with status: done
 2026-02-20 02:44:33,769 [hexclaw.test] INFO: Result: {"status": "completed"}
+2026-02-23 13:55:33,916 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: True)
+2026-02-23 13:56:24,130 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: True)
+2026-02-23 13:56:24,532 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.7 tier=low prompt_len=21
+2026-02-23 13:56:24,545 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.7; provider = openai
+2026-02-23 13:56:29,165 [hexclaw.inference] ERROR: Failed to log tokens: database or disk is full
+2026-02-23 13:56:29,169 [LiteLLM] INFO: [LoggingWorker] atexit: Flushing 1 remaining events...
+2026-02-23 13:56:29,173 [LiteLLM] INFO: [LoggingWorker] atexit: Successfully flushed 1 events!
+2026-02-23 13:56:47,791 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: True)
+2026-02-24 09:02:24,376 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: False)
+2026-02-24 09:02:24,630 [hexclaw.daemon] INFO: HexClaw Daemon v1.0 Starting
+2026-02-24 09:02:24,631 [hexclaw.daemon] INFO: Redis Cache Ready: {'hits_exact': 0, 'hits_semantic': 0, 'misses': 0, 'total': 0, 'hit_rate': 0.0, 'embed_backend': 'ngram_numpy', 'redis_exact': False, 'redis_semantic': False}
+2026-02-24 09:02:24,651 [hexclaw.tg_log] INFO: 📡 Telegram log handler installed (level=INFO, batch=3.0s)
+2026-02-24 09:02:25,729 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/sendMessage "HTTP/1.1 200 OK"
+2026-02-24 09:02:25,730 [hexclaw.daemon] INFO: Threat Monitor active.
+2026-02-24 09:02:25,730 [hexclaw.daemon] INFO: Daemon heartbeat active.
+2026-02-24 09:02:25,758 [hexclaw.tg_bot] INFO: Starting Telegram bot (long-polling)...
+2026-02-24 09:02:25,759 [hexclaw.monitor] INFO: Monitor starting (interval=900s, min_severity=medium)
+2026-02-24 09:02:25,760 [hexclaw.monitor] WARNING: feedparser not installed — `pip install feedparser`
+2026-02-24 09:02:25,761 [hexclaw.monitor] WARNING: feedparser not installed — `pip install feedparser`
+2026-02-24 09:02:25,762 [hexclaw.monitor] WARNING: feedparser not installed — `pip install feedparser`
+2026-02-24 09:02:25,763 [hexclaw.monitor] WARNING: feedparser not installed — `pip install feedparser`
+2026-02-24 09:02:25,764 [hexclaw.monitor] WARNING: feedparser not installed — `pip install feedparser`
+2026-02-24 09:02:25,766 [hexclaw.monitor] INFO: Monitor pass complete: 0 total, 0 sent, 0 dedup-skipped, 0 below-threshold
+2026-02-24 09:02:26,197 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getMe "HTTP/1.1 200 OK"
+2026-02-24 09:02:26,198 [telegram.ext.Application] INFO: Application started
+2026-02-24 09:02:26,344 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/deleteWebhook "HTTP/1.1 200 OK"
+2026-02-24 09:02:26,344 [hexclaw.tg_bot] INFO: Telegram bot is running. Waiting for messages...
+2026-02-24 09:02:28,903 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/sendMessage "HTTP/1.1 400 Bad Request"
+2026-02-24 09:02:29,188 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/sendMessage "HTTP/1.1 200 OK"
+2026-02-24 09:02:36,786 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-24 09:02:46,926 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-24 09:02:48,066 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-24 09:02:49,097 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/sendMessage "HTTP/1.1 200 OK"
+2026-02-24 09:02:58,225 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-24 09:03:08,368 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-24 09:03:18,508 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-24 09:03:28,656 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-24 09:03:38,807 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-24 09:03:48,948 [httpx] INFO: HTTP Request: POST https://api.telegram.org/bot8340303830:AAG5p4s9P-8mV38hZBNdyfgApi67Jfi0jjA/getUpdates "HTTP/1.1 200 OK"
+2026-02-24 09:03:48,951 [asyncio] ERROR: Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<run_bot_async() running at /mnt/c/antigravity/hexstrike-ai/tg_bot.py:966> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-02-24 09:06:53,198 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: True)
+2026-02-24 09:06:53,700 [hexclaw.daemon] INFO: HexClaw Daemon v1.0 Starting
+2026-02-24 09:06:54,670 [hexclaw.daemon] INFO: Redis Cache Ready: {'hits_exact': 0, 'hits_semantic': 0, 'misses': 0, 'total': 0, 'hit_rate': 0.0, 'embed_backend': 'ngram_numpy', 'redis_exact': True, 'redis_semantic': True}
+2026-02-24 09:06:54,678 [hexclaw.tg_log] INFO: 📡 Telegram log handler installed (level=INFO, batch=3.0s)
+2026-02-24 09:06:55,539 [hexclaw.daemon] INFO: Threat Monitor active.
+2026-02-24 09:06:55,539 [hexclaw.daemon] INFO: Daemon heartbeat active.
+2026-02-24 09:06:55,600 [hexclaw.tg_bot] INFO: Starting Telegram bot (long-polling)...
+2026-02-24 09:06:55,601 [hexclaw.monitor] INFO: Monitor starting (interval=900s, min_severity=medium)
+2026-02-24 09:06:57,296 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.7 tier=low prompt_len=298
+2026-02-24 09:06:57,404 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.7; provider = openai
+2026-02-24 09:07:02,265 [telegram.ext.Application] INFO: Application started
+2026-02-24 09:07:02,409 [hexclaw.tg_bot] INFO: Telegram bot is running. Waiting for messages...
+2026-02-24 09:07:12,641 [hexclaw.inference] INFO: LLM response: 78↑ 824↓ tokens · $0.0000 · 112 chars
+2026-02-24 09:07:13,922 [hexclaw.monitor] INFO: Monitor pass complete: 195 total, 1 sent, 88 dedup-skipped, 106 below-threshold
+2026-02-24 09:07:39,246 [hexclaw.planner] INFO: Planning goal: 'locate all available information on Louis Ham'
+2026-02-24 09:07:39,248 [hexclaw.planner] INFO: Using LLM planner (litellm + Gemini available)
+2026-02-24 09:07:39,248 [hexclaw.planner] ERROR: LLM Planning failed: asyncio.run() cannot be called from a running event loop
+2026-02-24 09:07:39,249 [hexclaw.planner] INFO: Extracted target: unknown
+2026-02-24 09:07:39,250 [hexclaw.planner] INFO: No rule matched → default skill: agent_plan
+2026-02-24 09:07:39,251 [hexclaw.planner] INFO: No built-in rule matched. Searching Awesome Skills for: locate all available information on Louis Ham
+2026-02-24 09:07:39,257 [hexclaw.awesome_skills] INFO: Loading awesome skills index from /mnt/c/antigravity/hexstrike-ai/.agent/skills/skills_index.json
+2026-02-24 09:07:39,286 [hexclaw.awesome_skills] INFO: Loaded 883 awesome skills.
+2026-02-24 09:07:39,288 [hexclaw.awesome_skills] INFO: Found awesome skill match: azure-communication-callautomation-java (Score 4)
+2026-02-24 09:07:39,319 [hexclaw.planner] INFO: Awesome Skill match found: azure-communication-callautomation-java
+2026-02-24 09:07:39,370 [hexclaw.data] WARNING: Error checking findings for suggestions: IO Error: No files found that match the pattern "/mnt/c/antigravity/hexstrike-ai/data/findings.parquet"
+2026-02-24 09:07:40,107 [telegram.ext.Application] ERROR: No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1315, in process_update
+    await coroutine
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_handlers/basehandler.py", line 159, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/antigravity/hexstrike-ai/tg_bot.py", line 330, in cmd_orchestrate
+    await update.effective_message.reply_text(
+    ...<3 lines>...
+    )
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_message.py", line 2068, in reply_text
+    return await self.get_bot().send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<21 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 3115, in send_message
+    return await super().send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<23 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_bot.py", line 1122, in send_message
+    return await self._send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<21 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 629, in _send_message
+    result = await super()._send_message(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<23 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_bot.py", line 819, in _send_message
+    result = await self._post(
+             ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.BadRequest: Can't parse entities: can't find end of the entity starting at byte offset 9533
+2026-02-24 09:09:26,663 [telegram.ext.Application] ERROR: No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1315, in process_update
+    await coroutine
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_handlers/basehandler.py", line 159, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/antigravity/hexstrike-ai/tg_bot.py", line 174, in cmd_skills
+    skills_cat = awesome_skills.get_skills_by_category()
+                 ^^^^^^^^^^^^^^
+NameError: name 'awesome_skills' is not defined
+2026-02-24 09:11:01,459 [hexclaw.daemon] INFO: Enqueued job 628e7b4b: recon_osint on shopgoodwill.com
+2026-02-24 09:11:03,305 [hexclaw.daemon] INFO: [Job 628e7b4b] Skill dispatch: recon_osint → shopgoodwill.com
+2026-02-24 09:11:03,336 [hexclaw.daemon] INFO: [Job 628e7b4b] Loaded skill 'recon_osint' with 8 steps
+2026-02-24 09:11:03,336 [hexclaw.daemon] INFO: [Job 628e7b4b] Step 1/8: tool=amass action=None
+2026-02-24 09:11:03,337 [hexclaw.daemon] INFO: [Job 628e7b4b] Dispatching tool: amass
+2026-02-24 09:11:05,044 [hexclaw.daemon] INFO: [Job 628e7b4b] Step 2/8: tool=subfinder action=None
+2026-02-24 09:11:05,045 [hexclaw.daemon] INFO: [Job 628e7b4b] Dispatching tool: subfinder
+2026-02-24 09:11:06,328 [hexclaw.daemon] INFO: [Job 628e7b4b] Step 3/8: tool=httpx action=None
+2026-02-24 09:11:06,329 [hexclaw.daemon] INFO: [Job 628e7b4b] Dispatching tool: httpx
+2026-02-24 09:11:07,601 [hexclaw.daemon] INFO: [Job 628e7b4b] Step 4/8: tool=rustscan action=None
+2026-02-24 09:11:07,602 [hexclaw.daemon] INFO: [Job 628e7b4b] Dispatching tool: rustscan
+2026-02-24 09:11:08,876 [hexclaw.daemon] INFO: [Job 628e7b4b] Step 5/8: tool=nmap action=None
+2026-02-24 09:11:08,877 [hexclaw.daemon] INFO: [Job 628e7b4b] Dispatching tool: nmap
+2026-02-24 09:11:10,157 [hexclaw.daemon] INFO: [Job 628e7b4b] Step 6/8: tool=nuclei action=None
+2026-02-24 09:11:10,159 [hexclaw.daemon] INFO: [Job 628e7b4b] Dispatching tool: nuclei
+2026-02-24 09:11:11,430 [hexclaw.daemon] INFO: [Job 628e7b4b] Step 7/8: tool=data_store action=store_findings
+2026-02-24 09:11:11,432 [hexclaw.daemon] INFO: [Job 628e7b4b] Storing findings to analytical layer
+2026-02-24 09:11:11,754 [hexclaw.data] INFO: Stored 2 rows to /mnt/c/antigravity/hexstrike-ai/data/job_628e7b4b.parquet
+2026-02-24 09:11:11,772 [hexclaw.data] WARNING: Postgres connection failed: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "hexclaw"
+connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "hexclaw"
+
+2026-02-24 09:11:11,772 [hexclaw.daemon] INFO: [Job 628e7b4b] Stored 2 findings to parquet
+2026-02-24 09:11:12,050 [hexclaw.daemon] INFO: [Job 628e7b4b] Step 8/8: tool=suggest_next action=suggest_next
+2026-02-24 09:11:12,052 [hexclaw.daemon] INFO: [Job 628e7b4b] Generating next-step suggestions for recon_osint
+2026-02-24 09:11:12,064 [hexclaw.data] WARNING: Error checking findings for suggestions: IO Error: No files found that match the pattern "/mnt/c/antigravity/hexstrike-ai/data/findings.parquet"
+2026-02-24 09:11:12,126 [hexclaw.daemon] INFO: [Job 628e7b4b] Suggestions: ['Recon target', 'Identify tech stack'] | Top CVEs: 🔥 *Top Critical/High Vulnerabilities*
+• *[HIGH]* `cve-2023-1234` on `shopgoodwil
+2026-02-24 09:11:12,126 [hexclaw.daemon] INFO: [Job 628e7b4b] Awaiting operator approval (timeout=300s)
+2026-02-24 09:16:12,410 [hexclaw.tg_bot] WARNING: Approval gate suggest:628e7b4b timed out after 300s
+2026-02-24 09:16:12,411 [hexclaw.daemon] INFO: [Job 628e7b4b] Operator response: {'action': 'timeout', 'choice': None}
+2026-02-24 09:16:12,412 [hexclaw.daemon] WARNING: [Job 628e7b4b] Approval timed out — skipping suggest_next
+2026-02-24 09:16:12,438 [hexclaw.daemon] INFO: [Job 628e7b4b] ✅ Skill 'recon_osint' completed successfully
+2026-02-24 09:20:03,404 [hexclaw.planner] INFO: Planning goal: 'write a python app that pulls the us ip block and saves it to a file'
+2026-02-24 09:20:03,405 [hexclaw.planner] INFO: Using LLM planner (litellm + Gemini available)
+2026-02-24 09:20:03,406 [hexclaw.planner] ERROR: LLM Planning failed: asyncio.run() cannot be called from a running event loop
+2026-02-24 09:20:03,406 [hexclaw.planner] INFO: Extracted target: unknown
+2026-02-24 09:20:03,407 [hexclaw.planner] INFO: Rule match → skill: autonomous_coder
+2026-02-24 09:20:03,417 [hexclaw.data] WARNING: Error checking findings for suggestions: IO Error: No files found that match the pattern "/mnt/c/antigravity/hexstrike-ai/data/findings.parquet"
+2026-02-24 09:21:25,104 [hexclaw.inference] INFO: Cache HIT for tier=med — 0 tokens, $0.00
+2026-02-24 09:21:25,126 [hexclaw.data] INFO: Executing SQL: SELECT * FROM jobs ORDER BY id DESC LIMIT 5;
+2026-02-24 09:21:25,143 [hexclaw.data] WARNING: Postgres connection failed: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "hexclaw"
+connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "hexclaw"
+
+2026-02-24 09:21:52,876 [telegram.ext.Application] ERROR: No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1315, in process_update
+    await coroutine
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_handlers/basehandler.py", line 159, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/antigravity/hexstrike-ai/tg_bot.py", line 174, in cmd_skills
+    skills_cat = awesome_skills.get_skills_by_category()
+                 ^^^^^^^^^^^^^^
+NameError: name 'awesome_skills' is not defined
+2026-02-24 09:22:15,556 [hexclaw.monitor] INFO: Monitor pass complete: 195 total, 1 sent, 176 dedup-skipped, 213 below-threshold
+2026-02-24 09:22:15,557 [telegram.ext.Application] ERROR: No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1315, in process_update
+    await coroutine
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_handlers/basehandler.py", line 159, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/antigravity/hexstrike-ai/tg_bot.py", line 174, in cmd_skills
+    skills_cat = awesome_skills.get_skills_by_category()
+                 ^^^^^^^^^^^^^^
+NameError: name 'awesome_skills' is not defined
+2026-02-24 09:23:35,228 [hexclaw.planner] INFO: Planning goal: 'find me hosts with port 11434 open'
+2026-02-24 09:23:35,229 [hexclaw.planner] INFO: Using LLM planner (litellm + Gemini available)
+2026-02-24 09:23:35,230 [hexclaw.planner] ERROR: LLM Planning failed: asyncio.run() cannot be called from a running event loop
+2026-02-24 09:23:35,231 [hexclaw.planner] INFO: Extracted target: unknown
+2026-02-24 09:23:35,232 [hexclaw.planner] INFO: No rule matched → default skill: agent_plan
+2026-02-24 09:23:35,233 [hexclaw.planner] INFO: No built-in rule matched. Searching Awesome Skills for: find me hosts with port 11434 open
+2026-02-24 09:23:35,235 [hexclaw.awesome_skills] INFO: Found awesome skill match: Azure Monitor Opentelemetry Exporter Java (Score 12)
+2026-02-24 09:23:35,275 [hexclaw.planner] INFO: Awesome Skill match found: Azure Monitor Opentelemetry Exporter Java
+2026-02-24 09:23:35,293 [hexclaw.data] WARNING: Error checking findings for suggestions: IO Error: No files found that match the pattern "/mnt/c/antigravity/hexstrike-ai/data/findings.parquet"
+2026-02-24 09:23:36,596 [telegram.ext.Application] ERROR: No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1315, in process_update
+    await coroutine
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_handlers/basehandler.py", line 159, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/antigravity/hexstrike-ai/tg_bot.py", line 330, in cmd_orchestrate
+    await update.effective_message.reply_text(
+    ...<3 lines>...
+    )
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_message.py", line 2068, in reply_text
+    return await self.get_bot().send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<21 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 3115, in send_message
+    return await super().send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<23 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_bot.py", line 1122, in send_message
+    return await self._send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<21 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 629, in _send_message
+    result = await super()._send_message(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<23 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_bot.py", line 819, in _send_message
+    result = await self._post(
+             ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/request/_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.BadRequest: Can't parse entities: can't find end of the entity starting at byte offset 9942
+2026-02-24 09:25:03,068 [hexclaw.planner] INFO: Planning goal: 'use hexstrike tools to launch cidr masscan workflow'
+2026-02-24 09:25:03,069 [hexclaw.planner] INFO: Using LLM planner (litellm + Gemini available)
+2026-02-24 09:25:03,070 [hexclaw.planner] ERROR: LLM Planning failed: asyncio.run() cannot be called from a running event loop
+2026-02-24 09:25:03,071 [hexclaw.planner] INFO: Extracted target: unknown
+2026-02-24 09:25:03,071 [hexclaw.planner] INFO: Rule match → skill: recon_osint
+2026-02-24 09:25:03,084 [hexclaw.data] WARNING: Error checking findings for suggestions: IO Error: No files found that match the pattern "/mnt/c/antigravity/hexstrike-ai/data/findings.parquet"
+2026-02-24 09:25:58,036 [hexclaw.inference] INFO: Cache HIT for tier=med — 0 tokens, $0.00
+2026-02-24 09:25:58,066 [hexclaw.data] INFO: Executing SQL: SELECT * FROM jobs ORDER BY id DESC LIMIT 5;
+2026-02-24 09:25:58,084 [hexclaw.data] WARNING: Postgres connection failed: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "hexclaw"
+connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  password authentication failed for user "hexclaw"
+
+2026-02-24 09:33:34,315 [telegram.ext.Application] INFO: Application is stopping. This might take a moment.
+2026-02-24 09:33:34,316 [telegram.ext.Application] CRITICAL: Fetching updates was aborted due to CancelledError(). Suppressing exception to ensure graceful shutdown.
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/mnt/c/antigravity/hexstrike-ai/./daemon.py", line 321, in main
+    await daemon.run_forever()
+  File "/mnt/c/antigravity/hexstrike-ai/./daemon.py", line 317, in run_forever
+    await asyncio.sleep(5) # Heartbeat interval
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/tasks.py", line 718, in sleep
+    return await future
+           ^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/asyncio/runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 673, in stop
+    self.__update_fetcher_task.result()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1233, in _update_fetcher
+    await self.__update_fetcher()
+  File "/mnt/c/antigravity/hexstrike-ai/.venv/lib/python3.13/site-packages/telegram/ext/_application.py", line 1212, in __update_fetcher
+    update = await self.update_queue.get()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/asyncio/queues.py", line 186, in get
+    await getter
+asyncio.exceptions.CancelledError
+2026-02-24 09:33:34,336 [telegram.ext.Application] INFO: Application.stop() complete
+2026-02-24 09:33:34,337 [hexclaw.tg_bot] INFO: Telegram bot stopped.
+2026-03-09 12:15:09,063 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: True)
+2026-03-09 12:15:09,296 [hexclaw.daemon] INFO: HexClaw Daemon v1.0 Starting
+2026-03-09 12:15:55,588 [hexclaw.daemon] INFO: Redis Cache Ready: {'hits_exact': 0, 'hits_semantic': 0, 'misses': 0, 'total': 0, 'hit_rate': 0.0, 'embed_backend': 'ngram_numpy', 'redis_exact': False, 'redis_semantic': False}
+2026-03-09 12:16:22,456 [hexclaw.daemon] INFO: Threat Monitor active.
+2026-03-09 12:16:22,457 [hexclaw.daemon] INFO: Daemon heartbeat active.
+2026-03-09 12:16:23,408 [hexclaw.tg_bot] INFO: Starting Telegram bot (long-polling)...
+2026-03-09 12:16:23,409 [hexclaw.monitor] INFO: Monitor starting (interval=900s, min_severity=medium)
+2026-03-09 12:16:23,423 [hexclaw.daemon] INFO: [Job fde40a29] Loaded skill 'villager_mission' with 1 steps
+2026-03-09 12:16:23,423 [hexclaw.daemon] INFO: [Job fde40a29] Step 1/1: tool=villager action=dispatch_mission
+2026-03-09 12:16:23,424 [hexclaw.daemon] INFO: [Job fde40a29] Dispatching autonomous mission to Villager: pentest 10.0.0.1 on 10.0.0.1
+2026-03-09 12:16:27,139 [telegram.ext.Application] INFO: Application started
+2026-03-09 12:16:27,285 [hexclaw.tg_bot] INFO: Telegram bot is running. Waiting for messages...
+2026-03-09 12:16:31,669 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.7 tier=low prompt_len=571
+2026-03-09 12:16:31,714 [hexclaw.villager_client] INFO: Successfully initialized MCP connection to Villager server.
+2026-03-09 12:16:31,708 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.7; provider = openai
+2026-03-09 12:16:31,996 [asyncio] ERROR: Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<run_bot_async() running at C:\antigravity\hexstrike-ai\tg_bot.py:962> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-03-09 12:16:32,349 [hexclaw.villager_client] INFO: Villager Mission Dispatched - Task ID: af8af7f9-4857-4c24-a939-0e80388cf425
+2026-03-09 12:16:33,275 [openai._base_client] INFO: Retrying request to /chat/completions in 0.456936 seconds
+2026-03-09 12:16:33,355 [hexclaw.daemon] INFO: Villager mission started with tracking ID: af8af7f9-4857-4c24-a939-0e80388cf425
+2026-03-09 12:16:34,167 [openai._base_client] INFO: Retrying request to /chat/completions in 0.849952 seconds
+2026-03-09 12:16:35,538 [hexclaw.inference] ERROR: Inference FAILED for openai/glm-4.7: litellm.RateLimitError: RateLimitError: OpenAIException - Insufficient balance or no resource package. Please recharge.
+2026-03-09 12:16:39,906 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.7 tier=low prompt_len=571
+2026-03-09 12:16:39,908 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.7; provider = openai
+2026-03-09 12:16:40,331 [openai._base_client] INFO: Retrying request to /chat/completions in 0.400730 seconds
+2026-03-09 12:16:41,160 [openai._base_client] INFO: Retrying request to /chat/completions in 0.887409 seconds
+2026-03-09 12:16:42,483 [hexclaw.inference] ERROR: Inference FAILED for openai/glm-4.7: litellm.RateLimitError: RateLimitError: OpenAIException - Insufficient balance or no resource package. Please recharge.
+2026-03-09 12:16:47,167 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.7 tier=low prompt_len=554
+2026-03-09 12:16:47,168 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.7; provider = openai
+2026-03-09 12:16:47,610 [openai._base_client] INFO: Retrying request to /chat/completions in 0.484200 seconds
+2026-03-09 12:16:48,538 [openai._base_client] INFO: Retrying request to /chat/completions in 0.823858 seconds
+2026-03-09 12:16:49,815 [hexclaw.inference] ERROR: Inference FAILED for openai/glm-4.7: litellm.RateLimitError: RateLimitError: OpenAIException - Insufficient balance or no resource package. Please recharge.
+2026-03-09 12:16:54,524 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.7 tier=low prompt_len=563
+2026-03-09 12:16:54,525 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.7; provider = openai
+2026-03-09 12:16:54,960 [openai._base_client] INFO: Retrying request to /chat/completions in 0.473400 seconds
+2026-03-09 12:16:55,882 [openai._base_client] INFO: Retrying request to /chat/completions in 0.909425 seconds
+2026-03-09 12:16:57,250 [hexclaw.inference] ERROR: Inference FAILED for openai/glm-4.7: litellm.RateLimitError: RateLimitError: OpenAIException - Insufficient balance or no resource package. Please recharge.
+2026-03-09 12:17:06,769 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.7 tier=low prompt_len=548
+2026-03-09 12:17:06,770 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.7; provider = openai
+2026-03-09 12:17:07,208 [openai._base_client] INFO: Retrying request to /chat/completions in 0.498194 seconds
+2026-03-09 12:17:08,138 [openai._base_client] INFO: Retrying request to /chat/completions in 0.803831 seconds
+2026-03-09 12:17:09,384 [hexclaw.inference] ERROR: Inference FAILED for openai/glm-4.7: litellm.RateLimitError: RateLimitError: OpenAIException - Insufficient balance or no resource package. Please recharge.
+2026-03-09 12:17:14,217 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.7 tier=low prompt_len=569
+2026-03-09 12:17:14,219 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.7; provider = openai
+2026-03-09 12:17:14,650 [openai._base_client] INFO: Retrying request to /chat/completions in 0.479514 seconds
+2026-03-09 12:17:15,568 [openai._base_client] INFO: Retrying request to /chat/completions in 0.973898 seconds
+2026-03-09 12:17:16,997 [hexclaw.inference] ERROR: Inference FAILED for openai/glm-4.7: litellm.RateLimitError: RateLimitError: OpenAIException - Insufficient balance or no resource package. Please recharge.
+2026-03-11 12:17:31,483 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: True)
+2026-03-11 12:17:31,753 [hexclaw.daemon] INFO: HexClaw Daemon v1.0 Starting
+2026-03-11 12:18:19,508 [hexclaw.daemon] INFO: Redis Cache Ready: {'hits_exact': 0, 'hits_semantic': 0, 'misses': 0, 'total': 0, 'hit_rate': 0.0, 'embed_backend': 'ngram_numpy', 'redis_exact': False, 'redis_semantic': False}
+2026-03-11 12:18:46,086 [hexclaw.daemon] INFO: Threat Monitor active.
+2026-03-11 12:18:46,086 [hexclaw.daemon] INFO: Daemon heartbeat active.
+2026-03-11 12:18:46,922 [hexclaw.tg_bot] INFO: Starting Telegram bot (long-polling)...
+2026-03-11 12:18:46,923 [hexclaw.monitor] INFO: Monitor starting (interval=900s, min_severity=medium)
+2026-03-11 12:18:50,141 [telegram.ext.Application] INFO: Application started
+2026-03-11 12:18:50,285 [hexclaw.tg_bot] INFO: Telegram bot is running. Waiting for messages...
+2026-03-11 12:18:50,564 [hexclaw.inference] INFO: LLM call: model=gemini/gemini-2.0-flash-exp tier=low prompt_len=562
+2026-03-11 12:18:50,586 [LiteLLM] INFO: 
+LiteLLM completion() model= gemini-2.0-flash-exp; provider = gemini
+2026-03-11 12:18:51,161 [hexclaw.inference] ERROR: Inference FAILED for gemini/gemini-2.0-flash-exp: litellm.NotFoundError: GeminiException - {
+  "error": {
+    "code": 404,
+    "message": "models/gemini-2.0-flash-exp is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+
+2026-03-11 12:18:51,733 [hexclaw.tg_bot] ERROR: Telegram send failed: Can't parse entities: can't find end of the entity starting at byte offset 493
+2026-03-11 12:18:55,991 [hexclaw.inference] INFO: LLM call: model=gemini/gemini-2.0-flash-exp tier=low prompt_len=563
+2026-03-11 12:18:55,992 [LiteLLM] INFO: 
+LiteLLM completion() model= gemini-2.0-flash-exp; provider = gemini
+2026-03-11 12:18:56,090 [hexclaw.inference] ERROR: Inference FAILED for gemini/gemini-2.0-flash-exp: litellm.NotFoundError: GeminiException - {
+  "error": {
+    "code": 404,
+    "message": "models/gemini-2.0-flash-exp is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+
+2026-03-11 12:18:56,246 [hexclaw.tg_bot] ERROR: Telegram send failed: Can't parse entities: can't find end of the entity starting at byte offset 497
+2026-03-11 12:19:00,355 [hexclaw.inference] INFO: LLM call: model=gemini/gemini-2.0-flash-exp tier=low prompt_len=543
+2026-03-11 12:19:00,357 [LiteLLM] INFO: 
+LiteLLM completion() model= gemini-2.0-flash-exp; provider = gemini
+2026-03-11 12:19:00,671 [hexclaw.inference] ERROR: Inference FAILED for gemini/gemini-2.0-flash-exp: litellm.NotFoundError: GeminiException - {
+  "error": {
+    "code": 404,
+    "message": "models/gemini-2.0-flash-exp is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+
+2026-03-11 12:19:01,034 [hexclaw.tg_bot] ERROR: Telegram send failed: Can't parse entities: can't find end of the entity starting at byte offset 475
+2026-03-11 12:19:05,150 [hexclaw.inference] INFO: LLM call: model=gemini/gemini-2.0-flash-exp tier=low prompt_len=565
+2026-03-11 12:19:05,150 [LiteLLM] INFO: 
+LiteLLM completion() model= gemini-2.0-flash-exp; provider = gemini
+2026-03-11 12:19:05,408 [hexclaw.inference] ERROR: Inference FAILED for gemini/gemini-2.0-flash-exp: litellm.NotFoundError: GeminiException - {
+  "error": {
+    "code": 404,
+    "message": "models/gemini-2.0-flash-exp is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+
+2026-03-11 12:19:05,734 [hexclaw.tg_bot] ERROR: Telegram send failed: Can't parse entities: can't find end of the entity starting at byte offset 493
+2026-03-11 12:19:14,215 [hexclaw.inference] INFO: LLM call: model=gemini/gemini-2.0-flash-exp tier=low prompt_len=557
+2026-03-11 12:19:14,216 [LiteLLM] INFO: 
+LiteLLM completion() model= gemini-2.0-flash-exp; provider = gemini
+2026-03-11 12:19:14,316 [hexclaw.inference] ERROR: Inference FAILED for gemini/gemini-2.0-flash-exp: litellm.NotFoundError: GeminiException - {
+  "error": {
+    "code": 404,
+    "message": "models/gemini-2.0-flash-exp is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+
+2026-03-11 12:19:14,460 [hexclaw.tg_bot] ERROR: Telegram send failed: Can't parse entities: can't find end of the entity starting at byte offset 483
+2026-03-11 12:19:18,560 [hexclaw.inference] INFO: LLM call: model=gemini/gemini-2.0-flash-exp tier=low prompt_len=569
+2026-03-11 12:19:18,561 [LiteLLM] INFO: 
+LiteLLM completion() model= gemini-2.0-flash-exp; provider = gemini
+2026-03-11 12:19:19,377 [telegram.ext.Application] INFO: Application is stopping. This might take a moment.
+2026-03-11 12:19:19,378 [telegram.ext.Application] CRITICAL: Fetching updates was aborted due to CancelledError(). Suppressing exception to ensure graceful shutdown.
+Traceback (most recent call last):
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\antigravity\hexstrike-ai\daemon.py", line 340, in main
+    await daemon.run_forever()
+  File "C:\antigravity\hexstrike-ai\daemon.py", line 336, in run_forever
+    await asyncio.sleep(5) # Heartbeat interval
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 665, in sleep
+    return await future
+           ^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\ext\_application.py", line 673, in stop
+    self.__update_fetcher_task.result()
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\ext\_application.py", line 1233, in _update_fetcher
+    await self.__update_fetcher()
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\ext\_application.py", line 1212, in __update_fetcher
+    update = await self.update_queue.get()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\asyncio\queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+2026-03-11 12:19:19,423 [telegram.ext.Application] INFO: Application.stop() complete
+2026-03-11 12:19:19,424 [hexclaw.tg_bot] INFO: Telegram bot stopped.
+2026-03-11 12:24:14,666 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: True)
+2026-03-11 12:24:14,734 [hexclaw.daemon] INFO: HexClaw Daemon v1.0 Starting
+2026-03-11 12:24:56,670 [hexclaw.daemon] INFO: Redis Cache Ready: {'hits_exact': 0, 'hits_semantic': 0, 'misses': 0, 'total': 0, 'hit_rate': 0.0, 'embed_backend': 'ngram_numpy', 'redis_exact': False, 'redis_semantic': False}
+2026-03-11 12:24:56,678 [hexclaw.tg_log] INFO: [tg_log] Telegram log handler installed (level=INFO, batch=3.0s)
+2026-03-11 12:25:02,460 [hexclaw.tg_bot] ERROR: Telegram send failed: Timed out
+2026-03-11 12:25:25,109 [hexclaw.daemon] INFO: Threat Monitor active.
+2026-03-11 12:25:25,110 [hexclaw.daemon] INFO: Daemon heartbeat active.
+2026-03-11 12:25:25,987 [hexclaw.tg_bot] INFO: Starting Telegram bot (long-polling)...
+2026-03-11 12:25:25,987 [hexclaw.monitor] INFO: Monitor starting (interval=900s, min_severity=medium)
+2026-03-11 12:25:30,750 [hexclaw.inference] INFO: LLM call: model=openai/coding-plan-lite tier=low prompt_len=562
+2026-03-11 12:25:30,767 [LiteLLM] INFO: 
+LiteLLM completion() model= coding-plan-lite; provider = openai
+2026-03-11 12:25:31,193 [telegram.ext.Application] INFO: Application started
+2026-03-11 12:25:31,354 [hexclaw.tg_bot] INFO: Telegram bot is running. Waiting for messages...
+2026-03-11 12:25:38,252 [hexclaw.inference] INFO: LLM call: model=openai/coding-plan-lite tier=low prompt_len=563
+2026-03-11 12:25:38,253 [LiteLLM] INFO: 
+LiteLLM completion() model= coding-plan-lite; provider = openai
+2026-03-11 12:25:43,288 [hexclaw.inference] INFO: LLM call: model=openai/coding-plan-lite tier=low prompt_len=543
+2026-03-11 12:25:43,290 [LiteLLM] INFO: 
+LiteLLM completion() model= coding-plan-lite; provider = openai
+2026-03-11 12:25:50,448 [hexclaw.inference] INFO: LLM call: model=openai/coding-plan-lite tier=low prompt_len=565
+2026-03-11 12:25:50,449 [LiteLLM] INFO: 
+LiteLLM completion() model= coding-plan-lite; provider = openai
+2026-03-11 12:26:02,236 [hexclaw.inference] INFO: LLM call: model=openai/coding-plan-lite tier=low prompt_len=557
+2026-03-11 12:26:02,238 [LiteLLM] INFO: 
+LiteLLM completion() model= coding-plan-lite; provider = openai
+2026-03-11 12:26:09,517 [hexclaw.inference] INFO: LLM call: model=openai/coding-plan-lite tier=low prompt_len=569
+2026-03-11 12:26:09,518 [LiteLLM] INFO: 
+LiteLLM completion() model= coding-plan-lite; provider = openai
+2026-03-11 12:33:06,857 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: True)
+2026-03-11 12:33:06,919 [hexclaw.daemon] INFO: HexClaw Daemon v1.0 Starting
+2026-03-11 12:33:47,097 [hexclaw.daemon] INFO: Redis Cache Ready: {'hits_exact': 0, 'hits_semantic': 0, 'misses': 0, 'total': 0, 'hit_rate': 0.0, 'embed_backend': 'ngram_numpy', 'redis_exact': False, 'redis_semantic': False}
+2026-03-11 12:33:47,100 [hexclaw.tg_log] INFO: [tg_log] Telegram log handler installed (level=INFO, batch=3.0s)
+2026-03-11 12:34:09,249 [hexclaw.daemon] INFO: Threat Monitor active.
+2026-03-11 12:34:09,249 [hexclaw.daemon] INFO: Daemon heartbeat active.
+2026-03-11 12:34:10,015 [hexclaw.tg_bot] INFO: Starting Telegram bot (long-polling)...
+2026-03-11 12:34:10,016 [hexclaw.monitor] INFO: Monitor starting (interval=900s, min_severity=medium)
+2026-03-11 12:34:12,880 [telegram.ext.Application] INFO: Application started
+2026-03-11 12:34:13,042 [hexclaw.tg_bot] INFO: Telegram bot is running. Waiting for messages...
+2026-03-11 12:34:13,042 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=562
+2026-03-11 12:34:13,059 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:34:23,799 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=563
+2026-03-11 12:34:23,803 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:34:33,216 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=543
+2026-03-11 12:34:33,217 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:34:42,985 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=565
+2026-03-11 12:34:42,986 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:34:58,513 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=557
+2026-03-11 12:34:58,514 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:35:07,452 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=569
+2026-03-11 12:35:07,454 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:35:17,244 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=568
+2026-03-11 12:35:17,245 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:35:35,188 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=571
+2026-03-11 12:35:35,189 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:35:44,892 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=571
+2026-03-11 12:35:44,895 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:35:55,675 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=554
+2026-03-11 12:35:55,676 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:35:56,696 [telegram.ext.Updater] ERROR: Error while calling `get_updates` one more time to mark all fetched updates. Suppressing error to ensure graceful shutdown. When polling for updates is restarted, updates may be fetched again. Please adjust timeouts via `ApplicationBuilder` or the parameter `get_updates_request` of `Bot`.
+Traceback (most recent call last):
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_transports\default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_async\connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_async\connection_pool.py", line 232, in handle_async_request
+    connection = await pool_request.wait_for_connection(timeout=timeout)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_async\connection_pool.py", line 35, in wait_for_connection
+    await self._connection_acquired.wait(timeout=timeout)
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_synchronization.py", line 149, in wait
+    with map_exceptions(anyio_exc_map):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.PoolTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\request\_httpxrequest.py", line 279, in do_request
+    res = await self._client.request(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_transports\default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.PoolTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\ext\_updater.py", line 400, in _get_updates_cleanup
+    await self.bot.get_updates(
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\ext\_extbot.py", line 671, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\_bot.py", line 4860, in get_updates
+    await self._post(
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\ext\_extbot.py", line 369, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\request\_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\request\_baserequest.py", line 305, in _request_wrapper
+    code, payload = await self.do_request(
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\request\_httpxrequest.py", line 289, in do_request
+    raise TimedOut(
+telegram.error.TimedOut: Pool timeout: All connections in the connection pool are occupied. Request was *not* sent to Telegram. Consider adjusting the connection pool size or the pool timeout.
+2026-03-11 12:35:56,860 [telegram.ext.Application] INFO: Application is stopping. This might take a moment.
+2026-03-11 12:35:56,861 [telegram.ext.Application] CRITICAL: Fetching updates was aborted due to CancelledError(). Suppressing exception to ensure graceful shutdown.
+Traceback (most recent call last):
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\antigravity\hexstrike-ai\daemon.py", line 340, in main
+    await daemon.run_forever()
+  File "C:\antigravity\hexstrike-ai\daemon.py", line 336, in run_forever
+    await asyncio.sleep(5) # Heartbeat interval
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 665, in sleep
+    return await future
+           ^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\ext\_application.py", line 673, in stop
+    self.__update_fetcher_task.result()
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\ext\_application.py", line 1233, in _update_fetcher
+    await self.__update_fetcher()
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\site-packages\telegram\ext\_application.py", line 1212, in __update_fetcher
+    update = await self.update_queue.get()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\reson\AppData\Local\Programs\Python\Python312\Lib\asyncio\queues.py", line 158, in get
+    await getter
+asyncio.exceptions.CancelledError
+2026-03-11 12:35:56,865 [telegram.ext.Application] INFO: Application.stop() complete
+2026-03-11 12:35:56,866 [hexclaw.tg_bot] INFO: Telegram bot stopped.
+2026-03-11 12:37:54,385 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: True)
+2026-03-11 12:37:54,447 [hexclaw.daemon] INFO: HexClaw Daemon v1.0 Starting
+2026-03-11 12:38:38,975 [hexclaw.daemon] INFO: Redis Cache Ready: {'hits_exact': 0, 'hits_semantic': 0, 'misses': 0, 'total': 0, 'hit_rate': 0.0, 'embed_backend': 'ngram_numpy', 'redis_exact': False, 'redis_semantic': False}
+2026-03-11 12:38:38,982 [hexclaw.tg_log] INFO: [tg_log] Telegram log handler installed (level=INFO, batch=3.0s)
+2026-03-11 12:39:04,202 [hexclaw.daemon] INFO: Threat Monitor active.
+2026-03-11 12:39:04,202 [hexclaw.daemon] INFO: Daemon heartbeat active.
+2026-03-11 12:39:05,005 [hexclaw.tg_bot] INFO: Starting Telegram bot (long-polling)...
+2026-03-11 12:39:05,006 [hexclaw.monitor] INFO: Monitor starting (interval=900s, min_severity=medium)
+2026-03-11 12:39:08,013 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=562
+2026-03-11 12:39:08,018 [telegram.ext.Application] INFO: Application started
+2026-03-11 12:39:08,029 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:39:08,327 [hexclaw.tg_bot] INFO: Telegram bot is running. Waiting for messages...
+2026-03-11 12:39:13,999 [hexclaw.inference] INFO: LLM response: 148 in 265 out tokens | $0.0000 | 191 chars
+2026-03-11 12:39:19,234 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=563
+2026-03-11 12:39:19,236 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:39:27,007 [hexclaw.inference] INFO: LLM response: 145 in 462 out tokens | $0.0000 | 130 chars
+2026-03-11 12:39:31,932 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=543
+2026-03-11 12:39:31,934 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:39:36,324 [hexclaw.inference] INFO: LLM response: 141 in 231 out tokens | $0.0000 | 206 chars
+2026-03-11 12:39:41,148 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=565
+2026-03-11 12:39:41,149 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:39:46,369 [hexclaw.inference] INFO: LLM response: 130 in 308 out tokens | $0.0000 | 181 chars
+2026-03-11 12:39:55,655 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=557
+2026-03-11 12:39:55,657 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:39:59,078 [hexclaw.inference] INFO: LLM response: 133 in 195 out tokens | $0.0000 | 208 chars
+2026-03-11 12:40:04,108 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=569
+2026-03-11 12:40:04,110 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:40:07,385 [hexclaw.inference] INFO: LLM response: 120 in 193 out tokens | $0.0000 | 190 chars
+2026-03-11 12:40:12,097 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=568
+2026-03-11 12:40:12,099 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:40:16,895 [hexclaw.inference] INFO: LLM response: 155 in 270 out tokens | $0.0000 | 214 chars
+2026-03-11 12:40:30,993 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=571
+2026-03-11 12:40:30,995 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:40:34,487 [hexclaw.inference] INFO: LLM response: 127 in 203 out tokens | $0.0000 | 229 chars
+2026-03-11 12:40:39,213 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=571
+2026-03-11 12:40:39,215 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:40:44,314 [hexclaw.inference] INFO: LLM response: 137 in 262 out tokens | $0.0000 | 178 chars
+2026-03-11 12:40:49,364 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=554
+2026-03-11 12:40:49,365 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:40:49,729 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.7 tier=med prompt_len=202
+2026-03-11 12:40:49,731 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.7; provider = openai
+2026-03-11 12:40:53,991 [hexclaw.inference] INFO: LLM response: 145 in 241 out tokens | $0.0000 | 226 chars
+2026-03-11 12:40:59,072 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=563
+2026-03-11 12:40:59,073 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:41:02,105 [hexclaw.inference] INFO: LLM response: 68 in 1144 out tokens | $0.0000 | 53 chars
+2026-03-11 12:41:02,115 [hexclaw.data] INFO: Executing SQL: SELECT id, status FROM jobs ORDER BY id DESC LIMIT 5;
+2026-03-11 12:41:06,215 [hexclaw.data] WARNING: Postgres connection failed: connection to server at "localhost" (::1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+2026-03-11 12:41:07,088 [hexclaw.inference] INFO: LLM response: 136 in 255 out tokens | $0.0000 | 219 chars
+2026-03-11 12:41:16,484 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=548
+2026-03-11 12:41:16,486 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 12:47:28,153 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: True)
+2026-03-11 12:47:32,316 [hexclaw.daemon] WARNING: Postgres not reachable � attempting to start it...

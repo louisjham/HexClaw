@@ -36,15 +36,16 @@ def get_duck():
     return _duck
 
 def get_pg_conn():
-    """Return a psycopg2 connection if POSTGRES_DSN is set."""
+    """Return a psycopg2 connection if POSTGRES_DSN is set and server is reachable."""
     dsn = os.getenv("POSTGRES_DSN")
     if not dsn:
         return None
     try:
         import psycopg2
-        return psycopg2.connect(dsn)
+        conn = psycopg2.connect(dsn, connect_timeout=3)
+        return conn
     except Exception as e:
-        log.warning(f"Postgres connection failed: {e}")
+        log.debug("Postgres unavailable (will use SQLite fallback): %s", e)
         return None
 
 # ── Analytics ─────────────────────────────────────────────────────────────────
@@ -69,9 +70,9 @@ async def query(prompt: str) -> pd.DataFrame:
         log.error(f"LLM returned error instead of SQL: {sql}")
         return pd.DataFrame()
     
-    log.info(f"Executing SQL: {sql}")
-    
-    # 3. Execute
+    log.info("Executing SQL: %s", sql)
+
+    # 3. Try Postgres first, fall through to DuckDB+SQLite on any failure
     pg_conn = get_pg_conn()
     if pg_conn:
         try:
@@ -82,23 +83,22 @@ async def query(prompt: str) -> pd.DataFrame:
             pg_conn.close()
             return df
         except Exception as e:
-            log.error(f"Postgres query failed: {e}")
-            if pg_conn:
+            log.warning("Postgres query failed, falling back to DuckDB: %s", e)
+            try:
                 pg_conn.close()
-            return pd.DataFrame()
+            except Exception:
+                pass
+            # Fall through to DuckDB below
 
+    # 4. DuckDB over local SQLite jobs DB
     try:
-        # JOBS_DB imported from config at module level
         _duck.execute("INSTALL sqlite; LOAD sqlite;")
         _duck.execute(f"ATTACH IF NOT EXISTS '{JOBS_DB}' AS main_jobs (TYPE SQLITE)")
-        
-        # Set search path so 'jobs' works without 'main_jobs.' prefix
         _duck.execute("SET search_path = 'main_jobs,main'")
-        
         df = _duck.query(sql).to_df()
         return df
     except Exception as e:
-        log.error(f"Data query failed: {e}")
+        log.error("Data query failed: %s", e)
         return pd.DataFrame()
 
 def store_parquet(df: pd.DataFrame, name: str):

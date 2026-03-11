@@ -4,8 +4,8 @@ HexClaw — inference.py
 Thrifty LLM inference with provider tiering and token logging.
 
 PRD compliance:
-  • Providers: google_pro(gemini-2.0-flash), z_ai, openrouter(granite-3.1), free(ollama/llama3).
-  • Tiers: low, med, high.
+  • Providers: google_pro(gemini-2.0-flash), z_ai, openrouter(g
+ranite-3.1), free(ollama/llama3).  • Tiers: low, med, high.
   • SQLite: data/token_log.db
 """
 
@@ -28,19 +28,23 @@ log = logging.getLogger("hexclaw.inference")
 # ── Config ────────────────────────────────────────────────────────────────────
 from config import DATA_DIR, TOKEN_LOG_DB
 
+# Z.AI base URL (OpenAI-compatible)
+Z_AI_BASE = "https://api.z.ai/api/coding/paas/v4"
+
 # Providers
 PROVIDERS = {
-    "google_pro": "gemini/gemini-2.0-flash-exp",
-    "z_ai": "openai/glm-4.7", # Routing through Z.ai's OpenAI-compatible API
+    "google_pro": "gemini/gemini-2.0-flash",
+    "z_ai":       "openai/glm-4.7",       # Z.AI — full model, high/med tasks
+    "z_ai_lite":  "openai/glm-4.5-air",   # Z.AI — lightweight, low-cost tasks
     "openrouter": "openrouter/ibm/granite-3.1-8b-instruct",
-    "free": "ollama/llama3"
+    "free":       "ollama/llama3"
 }
 
-# Tiers
+# Tiers — Z.ai primary; Gemini Flash / OpenRouter / Ollama as fallbacks
 TIERS = {
-    "high": [PROVIDERS["google_pro"], PROVIDERS["openrouter"]],
-    "med":  [PROVIDERS["z_ai"], PROVIDERS["openrouter"]],
-    "low":  [PROVIDERS["z_ai"], PROVIDERS["free"]]
+    "high": [PROVIDERS["z_ai"],      PROVIDERS["google_pro"], PROVIDERS["openrouter"]],
+    "med":  [PROVIDERS["z_ai"],      PROVIDERS["google_pro"], PROVIDERS["openrouter"]],
+    "low":  [PROVIDERS["z_ai_lite"], PROVIDERS["google_pro"], PROVIDERS["free"]]
 }
 
 try:
@@ -96,6 +100,9 @@ def log_tokens(provider: str, model: str, tier: str, tokens_in: int, tokens_out:
 
 # ── Inference Engine ──────────────────────────────────────────────────────────
 class InferenceEngine:
+    def __init__(self):
+        log.info(f"Inference Engine initialized (LiteLLM available: {LITELLM_AVAILABLE})")
+
     def select_model(self, complexity: str) -> str:
         """Complexity: low, med, high -> returns first available model in tier."""
         tier = TIERS.get(complexity, TIERS["low"])
@@ -110,7 +117,7 @@ class InferenceEngine:
             return hit
 
         if not LITELLM_AVAILABLE:
-            log.warning("LiteLLM not available. Falling back to local Ollama API.")
+            log.warning(f"LiteLLM not available. Falling back to local Ollama API for tier={complexity} prompt_len={len(prompt)}.")
             try:
                 import requests
                 response = requests.post(
@@ -118,7 +125,21 @@ class InferenceEngine:
                     json={"model": "llama3", "prompt": prompt, "stream": False},
                     timeout=60
                 )
-                return response.json()["response"]
+                text = response.json().get("response", "")
+                log.info(f"Ollama response: 0↑ 0↓ tokens · $0.00 · {len(text)} chars")
+                
+                # Cache the response
+                cache.set(f"{system}\n\n{prompt}", text)
+                
+                log_tokens(
+                    provider="ollama",
+                    model="llama3",
+                    tier=complexity,
+                    tokens_in=0,
+                    tokens_out=0,
+                    cost=0.0
+                )
+                return text
             except Exception as e:
                 log.error(f"Ollama fallback failed: {e}")
                 return ""
@@ -126,18 +147,20 @@ class InferenceEngine:
         model = self.select_model(complexity)
         log.info(f"LLM call: model={model} tier={complexity} prompt_len={len(prompt)}")
         
-        # ── Provider specific logic ───────────────────────────────────────────
+        # ── Provider specific kwargs ──────────────────────────────────────────
         kwargs = {}
-        if "openai/" in model and "glm" in model:
-            # Special routing for Z.ai OpenAI-compatible endpoint
-            kwargs["api_base"] = "https://api.z.ai/api/coding/paas/v4"
-            kwargs["api_key"] = os.getenv("ZHIPUAI_API_KEY")
-        elif "anthropic/" in model and "glm" in model:
-            # Fallback/alternative routing through Z.ai's Anthropic endpoint
-            kwargs["api_base"] = "https://api.z.ai/api/anthropic"
-            kwargs["api_key"] = os.getenv("ZHIPUAI_API_KEY")
+        if "gemini/" in model:
+            # Google Gemini via LiteLLM — uses GOOGLE_API_KEY automatically
+            pass
+        elif model in (PROVIDERS["z_ai"], PROVIDERS["z_ai_lite"]):
+            # Both Z.AI models share the same endpoint and API key.
+            # Set explicitly so LiteLLM never picks up a wrong OPENAI_API_BASE from env.
+            kwargs["api_base"] = Z_AI_BASE
+            kwargs["api_key"]  = os.getenv("ZHIPUAI_API_KEY") or os.getenv("OPENAI_API_KEY", "")
+            log.debug("Z.AI call -> base=%s  model=%s", kwargs["api_base"], model)
 
         try:
+            log.debug("litellm.acompletion -> model=%s  kwargs_keys=%s", model, list(kwargs))
             response = await litellm.acompletion(
                 model=model,
                 messages=[
@@ -154,7 +177,7 @@ class InferenceEngine:
             u_out = getattr(usage, "completion_tokens", 0) or 0
             cost = getattr(response, "_hidden_params", {}).get("response_cost") or 0.0
             
-            log.info(f"LLM response: {u_in}↑ {u_out}↓ tokens · ${float(cost):.4f} · {len(text)} chars")
+            log.info("LLM response: %d in %d out tokens | $%.4f | %d chars", u_in, u_out, float(cost), len(text))
             
             # ── Store in cache ────────────────────────────────────────────────
             cache.set(f"{system}\n\n{prompt}", text)
@@ -169,8 +192,12 @@ class InferenceEngine:
             )
             return text
         except Exception as e:
-            log.error(f"Inference FAILED for {model}: {e}")
-            return f"Error: {e}"
+            # Encode to ASCII for the console — error messages from Z.AI
+            # are in Chinese and crash Windows CP1252 stream handlers
+            safe_err = str(e).encode("ascii", errors="replace").decode("ascii")
+            log.error("Inference FAILED for %s — %s", model, safe_err)
+            log.debug("Full error (raw): %r", str(e))
+            return f"Error: {safe_err}"
 
     def ask_sync(self, prompt: str, complexity: str = "low") -> str:
         return asyncio.run(self.ask(prompt, complexity))

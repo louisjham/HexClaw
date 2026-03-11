@@ -1,0 +1,18 @@
+name: us_masscan_vuln
+description: "US Masscan Vulnerability Reconnaissance — Fetches US IPv4 CIDRs and scans them with Masscan"
+category: "recon"
+steps:
+  - tool: hexstrike
+    action: us-masscan-vuln
+    params:
+      application: "{{target}}"
+      max_cidrs: 5
+      rate: 10000
+    input: target
+    output: findings
+  - tool: hexstrike
+    action: store_findings
+  - tool: hexstrike
+    action: suggest_next
+    params:
+      timeout_sec: 300
