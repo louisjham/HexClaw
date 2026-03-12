@@ -109,8 +109,8 @@ def ensure_postgres() -> None:
 
     # 2. Try Windows service (works when installed via EnterpriseDB / MSI)
     started_via = None
-    for svc_name in ("postgresql", "postgresql-x64-16", "postgresql-x64-15",
-                     "postgresql-x64-14", "postgresql-x64-17"):
+    for svc_name in ("postgresql", "postgresql-x64-18", "postgresql-x64-17",
+                     "postgresql-x64-16", "postgresql-x64-15", "postgresql-x64-14"):
         try:
             result = subprocess.run(
                 ["net", "start", svc_name],

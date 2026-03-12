@@ -800,3 +800,145 @@ connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection re
 LiteLLM completion() model= glm-4.5-air; provider = openai
 2026-03-11 12:47:28,153 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: True)
 2026-03-11 12:47:32,316 [hexclaw.daemon] WARNING: Postgres not reachable — attempting to start it...
+2026-03-11 18:22:22,603 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: False)
+2026-03-11 18:22:22,930 [hexclaw.daemon] WARNING: Postgres not reachable â€” attempting to start it...
+2026-03-11 18:23:40,974 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: False)
+2026-03-11 18:23:41,094 [hexclaw.daemon] WARNING: Postgres not reachable â€” attempting to start it...
+2026-03-11 18:24:54,312 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: False)
+2026-03-11 18:24:54,420 [hexclaw.daemon] WARNING: Postgres not reachable â€” attempting to start it...
+2026-03-11 18:26:03,692 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: False)
+2026-03-11 18:26:03,796 [hexclaw.daemon] WARNING: Postgres not reachable â€” attempting to start it...
+2026-03-11 18:30:57,033 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: True)
+2026-03-11 18:30:57,380 [hexclaw.daemon] WARNING: Postgres not reachable — attempting to start it...
+2026-03-11 18:39:39,305 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: True)
+2026-03-11 18:39:39,534 [hexclaw.daemon] WARNING: Postgres not reachable — attempting to start it...
+2026-03-11 18:56:43,590 [hexclaw.inference] INFO: Inference Engine initialized (LiteLLM available: True)
+2026-03-11 18:56:43,801 [hexclaw.daemon] INFO: Postgres: already running.
+2026-03-11 18:56:43,804 [hexclaw.daemon] INFO: HexClaw Daemon v1.0 Starting
+2026-03-11 18:56:44,103 [hexclaw.daemon] INFO: Redis Cache Ready: {'hits_exact': 0, 'hits_semantic': 0, 'misses': 0, 'total': 0, 'hit_rate': 0.0, 'embed_backend': 'ngram_numpy', 'redis_exact': True, 'redis_semantic': True}
+2026-03-11 18:56:44,107 [hexclaw.tg_log] INFO: [tg_log] Telegram log handler installed (level=INFO, batch=3.0s)
+2026-03-11 18:56:45,585 [hexclaw.daemon] INFO: Threat Monitor active.
+2026-03-11 18:56:45,586 [hexclaw.daemon] INFO: Daemon heartbeat active.
+2026-03-11 18:56:46,384 [hexclaw.tg_bot] INFO: Starting Telegram bot (long-polling)...
+2026-03-11 18:56:46,385 [hexclaw.monitor] INFO: Monitor starting (interval=900s, min_severity=medium)
+2026-03-11 18:56:49,497 [telegram.ext.Application] INFO: Application started
+2026-03-11 18:56:49,684 [hexclaw.tg_bot] INFO: Telegram bot is running. Waiting for messages...
+2026-03-11 18:56:49,698 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=562
+2026-03-11 18:56:49,714 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:56:56,105 [hexclaw.inference] INFO: LLM response: 148 in 274 out tokens | $0.0000 | 208 chars
+2026-03-11 18:56:57,184 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=563
+2026-03-11 18:56:57,185 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:57:02,819 [hexclaw.inference] INFO: LLM response: 145 in 347 out tokens | $0.0000 | 183 chars
+2026-03-11 18:57:03,511 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=543
+2026-03-11 18:57:03,512 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:57:07,267 [hexclaw.inference] INFO: LLM response: 141 in 235 out tokens | $0.0000 | 147 chars
+2026-03-11 18:57:07,958 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=565
+2026-03-11 18:57:07,959 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:57:12,069 [hexclaw.inference] INFO: LLM response: 130 in 257 out tokens | $0.0000 | 246 chars
+2026-03-11 18:57:12,862 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=557
+2026-03-11 18:57:12,863 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:57:15,573 [hexclaw.inference] INFO: LLM response: 133 in 180 out tokens | $0.0000 | 193 chars
+2026-03-11 18:57:15,934 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=569
+2026-03-11 18:57:15,935 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:57:23,664 [hexclaw.inference] INFO: LLM response: 120 in 264 out tokens | $0.0000 | 164 chars
+2026-03-11 18:57:24,625 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=568
+2026-03-11 18:57:24,626 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:57:32,421 [hexclaw.inference] INFO: LLM response: 155 in 297 out tokens | $0.0000 | 210 chars
+2026-03-11 18:57:33,688 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.7 tier=med prompt_len=202
+2026-03-11 18:57:33,690 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.7; provider = openai
+2026-03-11 18:57:33,863 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=571
+2026-03-11 18:57:33,864 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:57:39,257 [hexclaw.inference] INFO: LLM response: 127 in 231 out tokens | $0.0000 | 155 chars
+2026-03-11 18:57:40,198 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=571
+2026-03-11 18:57:40,199 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:57:43,995 [hexclaw.inference] INFO: LLM response: 137 in 214 out tokens | $0.0000 | 168 chars
+2026-03-11 18:57:44,422 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=554
+2026-03-11 18:57:44,424 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:57:44,951 [hexclaw.inference] INFO: LLM response: 68 in 590 out tokens | $0.0000 | 44 chars
+2026-03-11 18:57:44,966 [hexclaw.data] INFO: Executing SQL: SELECT * FROM jobs ORDER BY id DESC LIMIT 5;
+2026-03-11 18:57:45,349 [asyncio] ERROR: Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<run_bot_async() running at C:\antigravity\hexstrike-ai\tg_bot.py:971> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-03-11 18:57:45,530 [hexclaw.data] WARNING: Postgres query failed, falling back to DuckDB: relation "jobs" does not exist
+LINE 1: SELECT * FROM jobs ORDER BY id DESC LIMIT 5;
+                      ^
+
+2026-03-11 18:57:48,993 [hexclaw.inference] INFO: LLM response: 145 in 253 out tokens | $0.0000 | 179 chars
+2026-03-11 18:57:49,457 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=563
+2026-03-11 18:57:49,458 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:57:53,296 [hexclaw.inference] INFO: LLM response: 136 in 216 out tokens | $0.0000 | 187 chars
+2026-03-11 18:57:54,016 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=548
+2026-03-11 18:57:54,017 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:57:58,801 [hexclaw.inference] INFO: LLM response: 129 in 253 out tokens | $0.0000 | 142 chars
+2026-03-11 18:57:59,201 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=569
+2026-03-11 18:57:59,202 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:58:04,095 [hexclaw.inference] INFO: LLM response: 148 in 299 out tokens | $0.0000 | 164 chars
+2026-03-11 18:58:04,460 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=554
+2026-03-11 18:58:04,461 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:58:09,073 [hexclaw.inference] INFO: LLM response: 149 in 311 out tokens | $0.0000 | 164 chars
+2026-03-11 18:58:09,660 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=564
+2026-03-11 18:58:09,661 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:58:13,077 [hexclaw.inference] INFO: LLM response: 153 in 189 out tokens | $0.0000 | 199 chars
+2026-03-11 18:58:13,467 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=567
+2026-03-11 18:58:13,468 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:58:17,927 [hexclaw.inference] INFO: LLM response: 140 in 250 out tokens | $0.0000 | 162 chars
+2026-03-11 18:58:18,298 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=373
+2026-03-11 18:58:18,299 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:58:22,059 [hexclaw.inference] INFO: LLM response: 94 in 218 out tokens | $0.0000 | 175 chars
+2026-03-11 18:58:22,418 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=331
+2026-03-11 18:58:22,419 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:58:26,479 [hexclaw.inference] INFO: LLM response: 90 in 237 out tokens | $0.0000 | 145 chars
+2026-03-11 18:58:27,208 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=311
+2026-03-11 18:58:27,209 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:58:31,071 [hexclaw.inference] INFO: LLM response: 86 in 221 out tokens | $0.0000 | 174 chars
+2026-03-11 18:58:31,446 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=365
+2026-03-11 18:58:31,447 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:58:34,369 [hexclaw.inference] INFO: LLM response: 97 in 159 out tokens | $0.0000 | 174 chars
+2026-03-11 18:58:34,844 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=295
+2026-03-11 18:58:34,845 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:58:38,920 [hexclaw.inference] INFO: LLM response: 88 in 239 out tokens | $0.0000 | 187 chars
+2026-03-11 18:58:39,309 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=346
+2026-03-11 18:58:39,310 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:58:42,027 [hexclaw.inference] INFO: LLM response: 90 in 132 out tokens | $0.0000 | 166 chars
+2026-03-11 18:58:42,409 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=643
+2026-03-11 18:58:42,410 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:58:48,154 [hexclaw.inference] INFO: LLM response: 158 in 429 out tokens | $0.0000 | 214 chars
+2026-03-11 18:58:49,042 [hexclaw.inference] INFO: Cache HIT for tier=low — 0 tokens, $0.00
+2026-03-11 18:58:49,437 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=646
+2026-03-11 18:58:49,438 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:58:53,903 [hexclaw.inference] INFO: LLM response: 170 in 306 out tokens | $0.0000 | 242 chars
+2026-03-11 18:58:54,304 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=679
+2026-03-11 18:58:54,305 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:58:57,571 [hexclaw.inference] INFO: LLM response: 176 in 215 out tokens | $0.0000 | 137 chars
+2026-03-11 18:58:57,956 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=645
+2026-03-11 18:58:57,957 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
+2026-03-11 18:59:04,452 [hexclaw.inference] INFO: LLM response: 175 in 374 out tokens | $0.0000 | 235 chars
+2026-03-11 18:59:05,215 [hexclaw.inference] INFO: LLM call: model=openai/glm-4.5-air tier=low prompt_len=594
+2026-03-11 18:59:05,216 [LiteLLM] INFO: 
+LiteLLM completion() model= glm-4.5-air; provider = openai
